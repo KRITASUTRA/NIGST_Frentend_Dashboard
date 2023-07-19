@@ -13,6 +13,7 @@ import SOIProject from "./SOIProject";
 import CreateBanner from "./CreateBanner";
 import Marquee from "./Marquee";
 import ViewContactReportAndFrom from "./ViewContactReportAndFrom";
+import HomeCarouselImage from "./HomeCarouselImage";
 
 
 export default function NIGSTAdmin() {
@@ -27,6 +28,7 @@ export default function NIGSTAdmin() {
   const [CBanner,setCBanner] = useState(false);
   const [marquee,setMarquee] = useState(false);
   const [viewContactFormReport,setViewContactFormReport] = useState(false);
+  const [homeCarousel,setHomeCarousel] = useState(false);
 
   function departmentFun() {
     setDepartmentCreation(true);
@@ -40,6 +42,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
   function facultyPositionFun() {
@@ -55,6 +58,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
   function usersFun() {
@@ -71,6 +75,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
   function courseAssignmentFun() {
@@ -87,6 +92,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
   function handleTenderFun() {
@@ -103,6 +109,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
   function announcementFun(){
@@ -119,6 +126,7 @@ export default function NIGSTAdmin() {
     // setFacultyAdmin(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
     
   }
   function ImageUploadFun(){
@@ -134,6 +142,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
 
@@ -150,6 +159,7 @@ export default function NIGSTAdmin() {
     setCBanner(false);
     setMarquee(false)
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
 
@@ -166,6 +176,7 @@ export default function NIGSTAdmin() {
     setFacultyPositionCreation(false);
     setMarquee(false);
     setViewContactFormReport(false);
+    setHomeCarousel(false)
 
   }
 
@@ -181,12 +192,29 @@ export default function NIGSTAdmin() {
     // setCourseCategory(false);
     setDepartmentCreation(false);
     setFacultyPositionCreation(false);
+    setHomeCarousel(false)
     setViewContactFormReport(false);
   }
 
 
   function contactFormFun(){
     setViewContactFormReport(true);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+    setHomeCarousel(false)
+  }
+  function carouselFun(){
+    setHomeCarousel(true);
+    setViewContactFormReport(false);
     setMarquee(false)
     setCBanner(false)
     setSOIProject(false);
@@ -285,6 +313,13 @@ export default function NIGSTAdmin() {
             Contact
             </li>
             }
+            {
+              homeCarousel ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={carouselFun}>
+              Home Carousel
+            </li> : <li className="p-3 " onClick={carouselFun}>
+            Home Carousel
+            </li>
+            }
             {/* {
               facultyAdmin ? <li style={{background:"#ffcb00"}} onClick={facultyAdminCreationFun}>
               Faculty Admin </li> : <li className="p-3 " onClick={facultyAdminCreationFun}>
@@ -317,6 +352,7 @@ export default function NIGSTAdmin() {
           {CBanner && <CreateBanner/>}
           {marquee && <Marquee/>}
           {viewContactFormReport && <ViewContactReportAndFrom/>}
+          {homeCarousel && <HomeCarouselImage/>}
         </div>
       </div>
     </div>
