@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const BouncyButton = ({fun,value}) => {
-  const [isClicked, setIsClicked] = useState(false);
 
   // const handleClick = () => {
   //   setIsClicked(true);
@@ -16,14 +15,14 @@ const BouncyButton = ({fun,value}) => {
     animationDuration: '1s',
     animationTimingFunction: 'ease-in-out',
     animationIterationCount: 'infinite',
-    color: isClicked ? '#ffcb00' : 'white', // Updated text color
+    color:'#ffcb00' // Updated text color
   };
 
   return (
     <>
       <button
         onClick={fun}
-        className={`pt-3 pb-3 pl-10 pr-10 bg-[rgb(27,48,88)] text-white rounded-md ${isClicked ? 'bounce' : ''}`}
+        className={`pt-3 pb-3 pl-10 pr-10 bg-[rgb(27,48,88)] text-white rounded-md`}
         style={buttonStyle}
       >
         {value}

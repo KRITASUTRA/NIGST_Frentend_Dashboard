@@ -158,7 +158,7 @@ export default function HomeCarouselImage() {
                             left: "33%",
                             backgroundColor: "rgb(211,211,211)",
                             borderRadius: "10px",
-                            top: "100px",
+                            top: "50px",
                             position: "absolute",
                             padding: "10px 20px",
                             display: "flex",
