@@ -14,6 +14,8 @@ import CreateBanner from "./CreateBanner";
 import Marquee from "./Marquee";
 import ViewContactReportAndFrom from "./ViewContactReportAndFrom";
 import HomeCarouselImage from "./HomeCarouselImage";
+import CreateFooter from "./CreateFooter";
+import CreateHeader from "./CreateHeader";
 
 
 export default function NIGSTAdmin() {
@@ -29,6 +31,8 @@ export default function NIGSTAdmin() {
   const [marquee,setMarquee] = useState(false);
   const [viewContactFormReport,setViewContactFormReport] = useState(false);
   const [homeCarousel,setHomeCarousel] = useState(false);
+  const [footer,setFooter] = useState(false);
+  const [header,setHeader] = useState(false);
 
   function departmentFun() {
     setDepartmentCreation(true);
@@ -43,6 +47,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
   function facultyPositionFun() {
@@ -59,6 +65,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
   function usersFun() {
@@ -76,6 +84,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
   function courseAssignmentFun() {
@@ -93,6 +103,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
   function handleTenderFun() {
@@ -110,6 +122,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
   function announcementFun(){
@@ -127,6 +141,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
     
   }
   function ImageUploadFun(){
@@ -143,6 +159,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
 
@@ -160,6 +178,8 @@ export default function NIGSTAdmin() {
     setMarquee(false)
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
 
@@ -177,6 +197,8 @@ export default function NIGSTAdmin() {
     setMarquee(false);
     setViewContactFormReport(false);
     setHomeCarousel(false)
+    setFooter(false);
+    setHeader(false);
 
   }
 
@@ -194,6 +216,9 @@ export default function NIGSTAdmin() {
     setFacultyPositionCreation(false);
     setHomeCarousel(false)
     setViewContactFormReport(false);
+    setFooter(false);
+    setHeader(false);
+
   }
 
 
@@ -210,10 +235,50 @@ export default function NIGSTAdmin() {
     // setCourseCategory(false);
     setDepartmentCreation(false);
     setFacultyPositionCreation(false);
-    setHomeCarousel(false)
+    setHomeCarousel(false);
+    setFooter(false);
+    setHeader(false);
+
   }
   function carouselFun(){
     setHomeCarousel(true);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+    setFooter(false);
+    setHeader(false);
+
+  }
+  function createFooterFun(){
+    setFooter(true);
+    setHomeCarousel(false);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+    setHeader(false);
+  }
+  function createHeaderFun(){
+    setHeader(true);
+    setFooter(false);
+    setHomeCarousel(false);
     setViewContactFormReport(false);
     setMarquee(false)
     setCBanner(false)
@@ -320,6 +385,20 @@ export default function NIGSTAdmin() {
             Home Carousel
             </li>
             }
+             {
+              footer ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={createFooterFun}>
+              Footer
+            </li> : <li className="p-3 " onClick={createFooterFun}>
+            Footer
+            </li>
+            }
+             {
+              header ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={createHeaderFun}>
+              Header
+            </li> : <li className="p-3 " onClick={createHeaderFun}>
+            Header
+            </li>
+            }
             {/* {
               facultyAdmin ? <li style={{background:"#ffcb00"}} onClick={facultyAdminCreationFun}>
               Faculty Admin </li> : <li className="p-3 " onClick={facultyAdminCreationFun}>
@@ -353,6 +432,8 @@ export default function NIGSTAdmin() {
           {marquee && <Marquee/>}
           {viewContactFormReport && <ViewContactReportAndFrom/>}
           {homeCarousel && <HomeCarouselImage/>}
+          {footer && <CreateFooter/>}
+          {header && <CreateHeader/>}
         </div>
       </div>
     </div>
