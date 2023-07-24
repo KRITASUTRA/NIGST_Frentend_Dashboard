@@ -48,7 +48,7 @@ export default function CreationFacultyPosition() {
         }, 5000);
       }).catch((error) => {
         setCircularResponse(false);
-        if(error.response.data.message == "Faculty position already exists."){
+        if(error.response.data.message === "Faculty position already exists."){
           setFailAlert(true);
         }
         setInterval(() => {
@@ -112,6 +112,8 @@ export default function CreationFacultyPosition() {
     </div>
     <div style={{width:"600px",maxWidth:"600" , overflowY:"scroll" , marginTop:"80px"}}>
     <table className="faculty-position-table">
+      <tbody>
+
     <tr>
                     <th colSpan="13" style={{ textAlign: "center", backgroundColor: "#ffcb00" }}>FACULTIES POSITIONS</th>
                   </tr>
@@ -133,6 +135,7 @@ export default function CreationFacultyPosition() {
           )
         })
       }
+      </tbody>
     </table>
     </div>
     </div>

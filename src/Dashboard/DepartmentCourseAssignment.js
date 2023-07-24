@@ -205,6 +205,8 @@ const [error1,setError1] = useState(false);
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }} className="filter-btn">{!filter ? <BouncyButton value={"View Assigned Courses"} fun={handleFilter} /> : <BouncyButton value={"View Form"} fun={handleFilter} />}</div>
       {(filter && viewCourse.length>0) ? <div className='user-details-wrapper'>
         <table>
+          <tbody>
+
           <tr >
             <th>S.No</th>
             <th>Organization Name</th>
@@ -223,6 +225,7 @@ const [error1,setError1] = useState(false);
               )
             })
           }
+          </tbody>
         </table>
       </div> : ""}
       {

@@ -323,6 +323,8 @@ function handleEdit(data){
       }
       {(viewTender.length>=1 && filter) ? <div className='user-details-wrapper'>
         <table>
+          <tbody>
+            
             <tr>
                 <th>S.No</th>
                 <th>Tender No</th>
@@ -368,15 +370,16 @@ function handleEdit(data){
             : "" }
         </td>
                   <td  style={{cursor:"pointer"}} ><AiFillFilePdf style={{color:"red",fontSize:"25px"}}   onClick={()=>viewPDF(data.tender_ref_no)}/></td>
-                  <td  style={{cursor:"pointer"}}><i class="fa-solid fa-pen-to-square" style={{fontSize:"25px"}} onClick={()=>{
+                  <td  style={{cursor:"pointer"}}><i className="fa-solid fa-pen-to-square" style={{fontSize:"25px"}} onClick={()=>{
                     handleEdit(data);
-                     }}></i></td>
+                  }}></i></td>
                   <td><BsFillArchiveFill onClick={()=>handleClickOpen(data.tender_ref_no)}  style={{fontSize:"25px"}}/></td>
               </tr>
                 )
               })
             }
            
+            </tbody>
         </table>
         </div> : "" }
         {

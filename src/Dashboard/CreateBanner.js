@@ -1,6 +1,8 @@
 import { Alert, Button, CircularProgress} from '@mui/material'
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useEffect } from 'react';
+import { BsImageFill } from 'react-icons/bs';
 
 export default function CreateBanner() {
     const [responseCircular, setCircularResponse] = useState(false);
@@ -9,6 +11,7 @@ export default function CreateBanner() {
     const [url,setURL] = useState("");
     const [alt,setAlt] = useState("");
     const [image,setImage] = useState("");
+    const [viewData,setViewData] = useState([]);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -32,6 +35,27 @@ export default function CreateBanner() {
              setErrorAlert(false)
             }, 5000);
         })
+    }
+    function viewDataFun(){
+      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_banner";
+      axios.get(url).then((res)=>{
+        setViewData(res.data.banners);
+      }).catch((error)=>{
+        console.log(error);
+      })
+    }
+    useEffect(()=>{
+      viewDataFun();
+    },[]);
+
+    function viewImage(url){
+      console.log(url)
+      const newWindow = window.open();
+      if (!newWindow) {
+        alert('Pop-up blocked. Please allow pop-ups for this website.');
+      } else {
+        newWindow.document.body.innerHTML = "<embed width='100%' height='100%' src='" + url + "' ></embed>";
+      }
     }
   return (
     <>
@@ -65,6 +89,28 @@ export default function CreateBanner() {
         <Button sx={{bgcolor:"#1b3058",color:"white"}} variant="contained" onClick={handleSubmit}>Submit</Button>
         </form>
     </div>
+    <div>
+                <div className="user-details-wrapper" style={{ maxHeight: "180px", overflowY: "scroll" }}>
+                    <table >
+                        <thead>
+                            <tr>
+                                <th style={{ backgroundColor: "#ffcb00" }}>S.No</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>View Image</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Alt Text</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {viewData.map((data, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td onClick={()=>viewImage(data.signedUrl)}><BsImageFill/></td>
+                                    <td>{data.alt}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                </div>
     </>
   )
 }

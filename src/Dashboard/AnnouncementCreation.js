@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { AiFillFilePdf } from 'react-icons/ai';
 import { BsFillArchiveFill } from 'react-icons/bs';
+import { FiLink } from 'react-icons/fi';
 
 export default function AnnouncementCreation() {
     const [viewForm, setViewForm] = useState(true);
@@ -203,7 +204,7 @@ function viewArchiveAnnouncementPDF(data){
                                             <td>{data.createdat}</td>
                                             {data.url === "" ? <td>{data.title}</td> : <td><a href={url} target='_blank' style={{textDecoration:"underline"}}>{data.title}</a></td>}
                                             {data.url === "" ? <td style={{minWidth:"50px",textAlign:"revert"}}>{data.description}</td> : <td style={{minWidth:"50px",textAlign:"revert"}}><a href={url} target='_blank' style={{textDecoration:"underline"}}>{data.description}</a></td>}
-                                            <td>{data.url}</td>
+                                            <td><a href={url} target='_blank' rel="noreferrer"><FiLink/></a> </td>
                                             <td>{data.status ? "": <Button onClick={()=>changeAnnouncementStatus(data.aid)} sx={{bgcolor:"#1b3058",color:"white"}} variant="contained">Unhide</Button>}</td>
                                             <td>{data.pdf_path !==null ?  <AiFillFilePdf onClick={()=>viewAnnouncementPDF(data.aid)} style={{fontSize:"30px",color:"red"}}/> : ""}</td>
                                             <td><BsFillArchiveFill onClick={()=>archiveAnnouncement(data.aid)} style={{fontSize:"30px"}}/></td>
@@ -237,7 +238,7 @@ function viewArchiveAnnouncementPDF(data){
                                             <td>{data.createdat}</td>
                                             {data.url === "" ? <td>{data.title}</td> : <td><a href={url} target='_blank' style={{textDecoration:"underline"}}>{data.title}</a></td>}
                                             {data.url === "" ? <td style={{minWidth:"50px",textAlign:"revert"}}>{data.description}</td> : <td style={{minWidth:"50px",textAlign:"revert"}}><a href={url} target='_blank' style={{textDecoration:"underline"}}>{data.description}</a></td>}
-                                            <td>{data.url}</td>
+                                            <td><a href={url} target='_blank' rel="noreferrer"><FiLink/></a> </td>
                                             {/* <td>{data.status ? <Button style={{backgroundColor:"green" , borderRadius:"50%" , height:"40px" , width:"40px"}} sx={{bgcolor:"#1b3058",color:"white"}} variant="contained"></Button> : <Button style={{backgroundColor:"red" , borderRadius:"50%" , height:"40px" , width:"40px"}}></Button>}</td> */}
                                             <td onClick={()=>handleDelete(data.aid)}><i class="fa-sharp fa-solid fa-trash"></i></td>
                                             <td>{data.pdf_path !== null ? <AiFillFilePdf style={{fontSize:"30px",color:"red"}} onClick={()=>viewArchiveAnnouncementPDF(data.aid)}/> : ""}</td>

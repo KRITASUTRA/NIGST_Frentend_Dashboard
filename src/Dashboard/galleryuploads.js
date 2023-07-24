@@ -42,12 +42,12 @@ const ImageUploadForm = () => {
       });
 
       if (response.ok) {
-        console.log(`Image with ID ${image} deleted successfully.`);
+        
       } else {
-        console.error(`Failed to delete image with ID ${image}.`);
+        
       }
     } catch (error) {
-      console.error('Error deleting image:', error);
+      
     }
   };
 
@@ -70,16 +70,16 @@ const ImageUploadForm = () => {
           body: formData,
         });
         const data = await response.json();
-        console.log('Upload response:', data);
+        
         fetchImagesForAlbum(selectedAlbum.category_name);
         handleClosePreview(); 
       } catch (error) {
-        console.error('Error uploading image:', error);
+        
       } finally {
         setLoading(false); 
       }
     } else {
-      console.error('No file selected or category not selected.');
+      
     }
   };
   
@@ -100,13 +100,13 @@ const ImageUploadForm = () => {
       });
 
       if (response.ok) {
-        console.log(`Category with ID ${categoryId} visibility updated successfully.`);
+        
         fetchCategories(); 
       } else {
-        console.error(`Failed to update visibility for category with ID ${categoryId}.`);
+        
       }
     } catch (error) {
-      console.error('Error updating category visibility:', error);
+      
     }
   };
 
@@ -123,12 +123,12 @@ const ImageUploadForm = () => {
           body: JSON.stringify({ Cname: newCategory }),
         });
         const data = await response.text();
-        console.log('New Album Response:', data);
+        
         setResponseMessage({ text: data, responseType: 'success' });
         setNewCategory('');
         fetchCategories();
       } catch (error) {
-        console.error('Error creating Album:', error);
+        
         setResponseMessage({ text: 'Error creating Album.', responseType: 'error' });
       }
     } else {
@@ -144,14 +144,14 @@ const ImageUploadForm = () => {
     try {
       const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_album_category');
       const data = await response.json();
-      console.log('API Response:', data);
+      
       if (data && data.data && Array.isArray(data.data)) {
         setCategories(data.data);
       } else {
-        console.error('Invalid API response - categories is not an array');
+        
       }
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      
     }
   };
 
@@ -166,13 +166,13 @@ const ImageUploadForm = () => {
       });
 
       if (response.ok) {
-        console.log(`Category with name ${categoryName} deleted successfully.`);
+        
         fetchCategories(); 
       } else {
-        console.error(`Failed to delete category with name ${categoryName}.`);
+        
       }
     } catch (error) {
-      console.error('Error deleting category:', error);
+     
     }
   };
 
@@ -188,10 +188,10 @@ const ImageUploadForm = () => {
         body: JSON.stringify(requestBody),
       });
       const data = await response.json();
-      console.log('Album Images:', data);
+      
       setAlbumImages(data.images);
     } catch (error) {
-      console.error('Error fetching album images:', error);
+      
     }
   };
 

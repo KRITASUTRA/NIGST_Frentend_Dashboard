@@ -2,6 +2,10 @@ import { Alert, Button, CircularProgress,  Switch } from '@mui/material'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 
 
 export default function Contact() {
@@ -17,6 +21,9 @@ export default function Contact() {
     const [viewData, setViewData] = useState([]);
     const [id,setID] = useState("");
     const [deleteErrorAlert,setDeleteErrorAlert] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [otp,setOTP] = useState("");
+
 
     function handleSubmit() {
         setCircularResponse(true);
@@ -150,7 +157,12 @@ export default function Contact() {
     }
     useEffect(() => {
         viewMarquee();
-    }, [])
+    }, []);
+
+    const handleClose = () => {
+        setOpen(false);
+        console.log(otp);
+      };
 
     return (
         <>
@@ -246,6 +258,7 @@ export default function Contact() {
                                 <th style={{ backgroundColor: "#ffcb00" }}>Subject</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Email Address</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Edit</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Verification</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Status</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Delete</th>
                             </tr>
@@ -262,6 +275,18 @@ export default function Contact() {
                                     <td>
                                         <Switch
                                             checked={data.visibility}
+                                            onChange={()=>setOpen(true)}
+                                            data={true}
+                                            sx={{
+                                                "& .MuiSwitch-thumb": {
+                                                    color: data.visibility ? "green" : "red",
+                                                },
+                                            }}
+                                        />
+                                    </td>
+                                    <td>
+                                        <Switch
+                                            checked={data.visibility}
                                             onChange={data.visibility ? () => handleStatusFalse(data.oid) : () => handleStatusTrue(data.oid)}
                                             data={true}
                                             sx={{
@@ -270,7 +295,7 @@ export default function Contact() {
                                                 },
                                             }}
                                         />
-                                    </td>                                   
+                                    </td>                                     
                                     <td onClick={() => handleDelete(data.oid)}>
                                         <i className="fa-sharp fa-solid fa-trash"></i>
                                     </td>
@@ -288,6 +313,16 @@ export default function Contact() {
             {viewData.length >0 && <div style={{margin:"15px 0px 0px 28px"}}>
                <h3 style={{fontStyle: "italic", color: "lightgreen",}}>Note : Only one marquee text can be selected at once.</h3>
             </div>}
+        <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+        <DialogContent sx={{padding:"10px 10px"}}>
+          <DialogContentText id="alert-dialog-description" >Email Verification</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+            <input type='text' placeholder='Enter OTP' onChange={(e)=>{setOTP(e.target.value)}}></input>
+          <Button onClick={handleClose} sx={{ bgcolor: '#1b3058', color: 'white',marginLeft:"10px" , height:"30px"}}
+            variant="contained">Submit</Button>
+        </DialogActions>
+      </Dialog>
         </>
     )
 }

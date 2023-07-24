@@ -2,6 +2,7 @@ import { Alert, Button, CircularProgress, Switch } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BsImageFill } from 'react-icons/bs';
+import { FiLink } from 'react-icons/fi';
 
 
 
@@ -14,6 +15,7 @@ export default function CreateHeader() {
     const [updateAlert, setUpdateAlert] = useState(false);
     const [name,setName] = useState("");
     const [image,setImage] = useState("");
+    const [url,setUrl] = useState("");
     const [viewData, setViewData] = useState([]);
     const [viewForm, setViewForm] = useState(true);
     const [id, setId] = useState("");
@@ -26,20 +28,37 @@ export default function CreateHeader() {
         setEditFromButton(false);
     }
 
+    function handleEditForm(data){
+        setEditFromButton(true);
+        setViewForm(true);
+        setName(data.h_name);
+        setUrl(data.header_url);
+        setId(data.h_id);
+    }
 
     useEffect(() => {
         viewProject();
     }, [])
 
     function handleSubmit() {
+        if(!name){
+            setEmptyFieldAlert(true);
+            setTimeout(() => {
+                setEmptyFieldAlert(false);
+            }, 5000);
+            return;
+        }
         setCircularResponse(true);
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_header";
+        const urlCreate = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_header";
         const formData = new FormData();
         formData.append("Hname",name);
-        formData.append("image",image)
+        formData.append("url",urlCreate);
+        formData.append("image",image);
         axios.post(url, formData).then((res) => {
-            console.log(res.data)
             if (res.data.message === "Successfully Created") {
+                setName("");
+                setUrl("");
+                setImage(null);
                 document.getElementById('form').reset()
                 viewProject();
                 setCircularResponse(false);
@@ -67,7 +86,6 @@ export default function CreateHeader() {
     function viewProject() {
         const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_header";
         axios.get(url).then((res) => {
-            console.log(res.data.data)
             setViewData(res.data.data);
         }).catch((error) => {
             console.log(error)
@@ -143,6 +161,42 @@ export default function CreateHeader() {
           newWindow.document.body.innerHTML = "<embed width='100%' height='100%' src='" + url + "' ></embed>";
         }
       }
+      function handleEdit(){
+        setCircularResponse(true);
+        const urlUpdate = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_header";
+        const data={
+            Hname:name,
+            url:url,
+            HID:id
+        }
+        axios.patch(urlUpdate, data).then((res) => {
+            console.log(res.data)
+            if (res.data.message === "Successfully Updated!") {
+                setName("");
+                setUrl("");
+                setImage(null);
+                document.getElementById('form').reset()
+                viewProject();
+                setCircularResponse(false);
+                setUpdateAlert(true);
+                setTimeout(() => {
+                    setUpdateAlert(false);
+                }, 5000);
+                return;
+            }
+
+        }).catch((error) => {
+            setCircularResponse(false);
+            if (error.response.data.message === "Data Already Exist!") {
+                setErrorAlert(true);
+                setTimeout(() => {
+                    setErrorAlert(false);
+                }, 5000);
+                return;
+            }
+
+        })
+      }
     return (
         <>
             {updateAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='success' style={{ marginTop: "20px" }}>Update Successfully</Alert></div>}
@@ -178,8 +232,9 @@ export default function CreateHeader() {
                 {errorAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Data Already Exist!</Alert>}
                 <form id='form' style={{ display: "flex", flexDirection: "column" }}>
                     <input type='text' placeholder='Enter Name' onChange={(e) => setName(e.target.value)}  value={name}/>
+                    <input type='url' placeholder='Enter URL' onChange={(e) => setUrl(e.target.value)}  value={url}/>
                     <input type='file' placeholder='Enter URL' onChange={(e) => setImage(e.target.files[0])}  />
-                    {editForm ? <Button sx={{ bgcolor: "#1b3058", color: "white" }} variant="contained" onClick={handleSubmit}>Edit</Button> : <Button sx={{ bgcolor: "#1b3058", color: "white" }} variant="contained" onClick={handleSubmit}>Submit</Button>}
+                    {editForm ? <Button sx={{ bgcolor: "#1b3058", color: "white" }} variant="contained" onClick={handleEdit}>Edit</Button> : <Button sx={{ bgcolor: "#1b3058", color: "white" }} variant="contained" onClick={handleSubmit}>Submit</Button>}
                 </form>
             </div>}
             <div>
@@ -190,6 +245,8 @@ export default function CreateHeader() {
                                 <th style={{ backgroundColor: "#ffcb00" }}>S.No</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Name</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Image</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>URL</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Edit</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Status</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Delete</th>
                             </tr>
@@ -199,7 +256,9 @@ export default function CreateHeader() {
                                         <tr key={index}>
                                             <td>{index + 1}</td>
                                             <td>{data.h_name}</td>
-                                            <td onClick={()=>viewImage(data.url)}><BsImageFill/></td>
+                                            <td onClick={()=>viewImage(data.imageurl)}><BsImageFill/></td>
+                                            <td><a href={data.header_url} target='_blank' rel="noreferrer"><FiLink/></a> </td>
+                                            <td onClick={()=>handleEditForm(data)}><i class="fa-solid fa-pen-to-square"></i></td>
                                             <td>
                                                 <Switch
                                                     checked={data.visibility}
