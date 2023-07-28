@@ -23,6 +23,8 @@ export default function CreateFooter() {
     const [viewForm, setViewForm] = useState(true);
     const [id, setId] = useState("");
     const [editForm,setEditFromButton] = useState(false);
+    const [urlValidation,setUrlValidation] = useState(false);
+
 
 
     function handleViewForm(){
@@ -46,6 +48,13 @@ export default function CreateFooter() {
 
     function handleSubmit() {
         setCircularResponse(true);
+        if(!(link.startsWith("http") || link.startsWith("https"))){
+            setUrlValidation(true);
+            setTimeout(() => {
+                setUrlValidation(false)
+            }, 5000);
+            return;
+        }
         const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_create";
         const data={
             name,
@@ -226,6 +235,7 @@ export default function CreateFooter() {
                 {emptyFieldAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>All fields required</Alert>}
                 {successAlert && <Alert severity='success' style={{ marginBottom: "20px" }}>Created Successfully</Alert>}
                 {errorAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Type is required</Alert>}
+                {urlValidation && <Alert severity='error' style={{ marginBottom: "20px" }}>URL must contain HTTP/HTTPS</Alert>}
                 <form id='form' style={{ display: "flex", flexDirection: "column" }}>
                     <select onChange={(e)=>setType(e.target.value)}>
                         <option>Select Footer Type</option>

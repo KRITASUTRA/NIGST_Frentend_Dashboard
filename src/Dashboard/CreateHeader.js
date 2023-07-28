@@ -10,6 +10,7 @@ export default function CreateHeader() {
     const [responseCircular, setCircularResponse] = useState(false);
     const [emptyFieldAlert, setEmptyFieldAlert] = useState(false);
     const [errorAlert, setErrorAlert] = useState(false);
+    const [errorTwoAlert, setErrorTwoAlert] = useState(false);
     const [successAlert, setSuccessAlert] = useState(false);
     const [deleteError, setDeleteAlert] = useState(false);
     const [updateAlert, setUpdateAlert] = useState(false);
@@ -20,6 +21,7 @@ export default function CreateHeader() {
     const [viewForm, setViewForm] = useState(true);
     const [id, setId] = useState("");
     const [editForm,setEditFromButton] = useState(false);
+    const [urlValidation,setUrlValidation] = useState(false);
 
 
 
@@ -41,6 +43,14 @@ export default function CreateHeader() {
     }, [])
 
     function handleSubmit() {
+        if(!(url.startsWith("http") || url.startsWith("https"))){
+            setUrlValidation(true);
+            setTimeout(() => {
+                setUrlValidation(false)
+            }, 5000);
+            return;
+        }
+
         if(!name){
             setEmptyFieldAlert(true);
             setTimeout(() => {
@@ -52,9 +62,9 @@ export default function CreateHeader() {
         const urlCreate = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_header";
         const formData = new FormData();
         formData.append("Hname",name);
-        formData.append("url",urlCreate);
+        formData.append("url",url);
         formData.append("image",image);
-        axios.post(url, formData).then((res) => {
+        axios.post(urlCreate, formData).then((res) => {
             if (res.data.message === "Successfully Created") {
                 setName("");
                 setUrl("");
@@ -93,9 +103,9 @@ export default function CreateHeader() {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_delete";
-        axios.delete(url, { data: { footer_id: id } }).then((res) => {
-            if (res.data.message === "Successfully Deleted") {
+        const urlDelete = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_header";
+        axios.delete(urlDelete, { data: { hid: id } }).then((res) => {
+            if (res.data.message === "Successfully Deleted!") {
                 viewProject()
                 setDeleteAlert(true);
                 setTimeout(() => {
@@ -122,12 +132,14 @@ export default function CreateHeader() {
             }, 5000);
             console.log(res)
         }).catch((error) => {
-            console.log(error)
-            // setErrorAlert(true);
-            //   setTimeout(() => {
-            //       setErrorAlert(false);
-            //   }, 5000);
-            //   return;
+            if(error.response.data.message === "Only two images are allowed to display in the header"){
+                setErrorTwoAlert(true);
+                setTimeout(() => {
+                  setErrorTwoAlert(false);
+                }, 5000);
+                return;
+            }
+            
         })
     }
     function handleStatusFalse(id) {
@@ -163,6 +175,14 @@ export default function CreateHeader() {
       }
       function handleEdit(){
         setCircularResponse(true);
+        if(!(url.startsWith("http") || url.startsWith("https"))){
+            setCircularResponse(false);
+            setUrlValidation(true);
+            setTimeout(() => {
+                setUrlValidation(false)
+            }, 5000);
+            return;
+        }
         const urlUpdate = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_header";
         const data={
             Hname:name,
@@ -170,7 +190,7 @@ export default function CreateHeader() {
             HID:id
         }
         axios.patch(urlUpdate, data).then((res) => {
-            console.log(res.data)
+           
             if (res.data.message === "Successfully Updated!") {
                 setName("");
                 setUrl("");
@@ -202,6 +222,7 @@ export default function CreateHeader() {
             {updateAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='success' style={{ marginTop: "20px" }}>Update Successfully</Alert></div>}
             {deleteError && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='success' style={{ marginTop: "20px" }}>Successfully Deleted!</Alert></div>}
             {errorAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='error' style={{ marginTop: "20px" }}>Something went wrong</Alert></div>}
+            {errorTwoAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='error' style={{ marginTop: "20px" }}>Only two images are allowed to display in the header</Alert></div>}
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
             {viewForm && <Button  sx={{bgcolor:"#1b3058",color:"white"}} variant="contained" onClick={handleViewForm}>View</Button>}
             {!viewForm &&  <Button  sx={{bgcolor:"#1b3058",color:"white"}} variant="contained" onClick={handleViewForm}>Create</Button>}
@@ -230,6 +251,7 @@ export default function CreateHeader() {
                 {emptyFieldAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>All fields required</Alert>}
                 {successAlert && <Alert severity='success' style={{ marginBottom: "20px" }}>Created Successfully</Alert>}
                 {errorAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Data Already Exist!</Alert>}
+                {urlValidation && <Alert severity='error' style={{ marginBottom: "20px" }}>URL must contain HTTP/HTTPS</Alert>}
                 <form id='form' style={{ display: "flex", flexDirection: "column" }}>
                     <input type='text' placeholder='Enter Name' onChange={(e) => setName(e.target.value)}  value={name}/>
                     <input type='url' placeholder='Enter URL' onChange={(e) => setUrl(e.target.value)}  value={url}/>
