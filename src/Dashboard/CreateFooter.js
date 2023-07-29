@@ -1,7 +1,6 @@
 import { Alert, Button, CircularProgress, Switch } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useRef } from 'react';
 import {FiLink} from 'react-icons/fi'
 
 
@@ -48,12 +47,23 @@ export default function CreateFooter() {
 
     function handleSubmit() {
         setCircularResponse(true);
-        if(!(link.startsWith("http") || link.startsWith("https"))){
-            setUrlValidation(true);
+        if(type === ""){
+            setCircularResponse(false);
+            setEmptyFieldAlert(true);
             setTimeout(() => {
-                setUrlValidation(false)
+                setEmptyFieldAlert(false);
             }, 5000);
             return;
+        }
+        if(type !== "Contact Us"){
+            if(!(link.startsWith("http") || link.startsWith("https"))){
+                setUrlValidation(true);
+                setCircularResponse(false)
+                setTimeout(() => {
+                    setUrlValidation(false)
+                }, 5000);
+                return;
+            }
         }
         const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_create";
         const data={
@@ -206,7 +216,7 @@ export default function CreateFooter() {
         <>
             {updateAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='success' style={{ marginTop: "20px" }}>Update Successfully</Alert></div>}
             {deleteError && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='success' style={{ marginTop: "20px" }}>Successfully Deleted!</Alert></div>}
-            {/* {errorAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='error' style={{ marginTop: "20px" }}>Something went wrong</Alert></div>} */}
+            {errorAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='error' style={{ marginTop: "20px" }}>Something went wrong</Alert></div>}
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
             {viewForm && <Button  sx={{bgcolor:"#1b3058",color:"white"}} variant="contained" onClick={handleViewForm}>View</Button>}
             {!viewForm &&  <Button  sx={{bgcolor:"#1b3058",color:"white"}} variant="contained" onClick={handleViewForm}>Create</Button>}
@@ -274,7 +284,7 @@ export default function CreateFooter() {
                                             <td>{index + 1}</td>
                                             <td>{data.name}</td>
                                             <td>{data.type}</td>
-                                            <td><a href={data.link} target='_blank'><FiLink/></a> </td>
+                                            <td><a href={data.link} target='_blank' rel="noreferrer"><FiLink/></a> </td>
                                             <td>{data.phone}</td>
                                             <td>{data.email}</td>
                                             <td>{data.address}</td>
