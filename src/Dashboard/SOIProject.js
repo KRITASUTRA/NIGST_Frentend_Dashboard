@@ -246,7 +246,7 @@ export default function SOIProject() {
         <div style={{ width: "100%", textAlign: "center", fontSize: "30px", marginTop: "200px" }}>No data to show</div>
       }
         </div>
-    {!viewForm && <div className="login-wrapper ">
+    {!viewForm && <div className="login-wrapper">
     {responseCircular && (
       <div
         style={{

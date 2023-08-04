@@ -16,6 +16,7 @@ import ViewContactReportAndFrom from "./ViewContactReportAndFrom";
 import HomeCarouselImage from "./HomeCarouselImage";
 import CreateFooter from "./CreateFooter";
 import CreateHeader from "./CreateHeader";
+import CreateSocialMediaIcon from "./CreateSocialMediaIcon";
 
 
 export default function NIGSTAdmin() {
@@ -33,6 +34,7 @@ export default function NIGSTAdmin() {
   const [homeCarousel,setHomeCarousel] = useState(false);
   const [footer,setFooter] = useState(false);
   const [header,setHeader] = useState(false);
+  const [socialMedia,setSocialMedia] = useState(false);
 
   function departmentFun() {
     setDepartmentCreation(true);
@@ -49,6 +51,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function facultyPositionFun() {
@@ -67,6 +70,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function usersFun() {
@@ -86,6 +90,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function courseAssignmentFun() {
@@ -105,6 +110,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function handleTenderFun() {
@@ -124,6 +130,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function announcementFun(){
@@ -143,6 +150,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
     
   }
   function ImageUploadFun(){
@@ -161,6 +169,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
 
@@ -180,6 +189,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
 
@@ -199,6 +209,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false)
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
 
@@ -218,6 +229,7 @@ export default function NIGSTAdmin() {
     setViewContactFormReport(false);
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
 
@@ -238,6 +250,7 @@ export default function NIGSTAdmin() {
     setHomeCarousel(false);
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function carouselFun(){
@@ -256,6 +269,7 @@ export default function NIGSTAdmin() {
     setFacultyPositionCreation(false);
     setFooter(false);
     setHeader(false);
+    setSocialMedia(false);
 
   }
   function createFooterFun(){
@@ -274,9 +288,32 @@ export default function NIGSTAdmin() {
     setDepartmentCreation(false);
     setFacultyPositionCreation(false);
     setHeader(false);
+    setSocialMedia(false);
+
   }
   function createHeaderFun(){
     setHeader(true);
+    setFooter(false);
+    setHomeCarousel(false);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+    setSocialMedia(false);
+
+  }
+
+  function createSocialFun(){
+    setSocialMedia(true);
+    setHeader(false);
     setFooter(false);
     setHomeCarousel(false);
     setViewContactFormReport(false);
@@ -399,6 +436,13 @@ export default function NIGSTAdmin() {
             Header
             </li>
             }
+            {
+              socialMedia ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={createSocialFun}>
+              Social Media
+            </li> : <li className="p-3 " onClick={createSocialFun}>
+              Social Media
+            </li>
+            }
             {/* {
               facultyAdmin ? <li style={{background:"#ffcb00"}} onClick={facultyAdminCreationFun}>
               Faculty Admin </li> : <li className="p-3 " onClick={facultyAdminCreationFun}>
@@ -434,6 +478,7 @@ export default function NIGSTAdmin() {
           {homeCarousel && <HomeCarouselImage/>}
           {footer && <CreateFooter/>}
           {header && <CreateHeader/>}
+          {socialMedia && <CreateSocialMediaIcon/>}
         </div>
       </div>
     </div>
