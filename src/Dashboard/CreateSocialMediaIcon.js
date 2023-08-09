@@ -16,11 +16,11 @@ const CreateSocialMediaIcon = ()=>{
     const [updateAlert,setUpdateAlert] = useState(false);
     const [editFormButton,setEditFormButton] = useState(false);
     const [viewData,setViewData] = useState([]);
-    const [name,setName] = useState("");
     const [link,setLink] = useState("");
     const [icon,setIcon] = useState("");
     const [color,setColor] = useState("");
     const [showColorPicker1, setShowColorPicker1] = useState(false);
+    const [id,setId] = useState("");
 
 
 
@@ -30,26 +30,26 @@ const CreateSocialMediaIcon = ()=>{
     
       function handleSubmit(){
         setCircularResponse(true);
-        // if(){
-        //     setCircularResponse(false);
-        //     setEmptyFieldAlert(true);
-        //     setTimeout(() => {
-        //         setEmptyFieldAlert(false);
-        //     }, 5000);
-        //     return;
-        // }
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_social_media";
+        if(!link || !icon){
+            setCircularResponse(false);
+            setEmptyFieldAlert(true);
+            setTimeout(() => {
+                setEmptyFieldAlert(false);
+            }, 5000);
+            return;
+        }
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/social_media_create";
         const data = {
-            name:`${name}`,
             url:`${link}`,
-            icon:`${icon}`,
-            iconColor:`${color}`
+            name:`${icon}`,
+            color:`${color}`
         }
         axios.post(url,data).then((res)=>{
             console.log(res.data)
-            if(res.data.message === "Project created successfully!"){
+            if(res.data.message === "Successfully Created!"){
             document.getElementById('form').reset()
-              viewProject();
+            setLink("")
+            viewProject();
             setCircularResponse(false);
             setSuccessAlert(true);
             setTimeout(() => {
@@ -75,7 +75,6 @@ const CreateSocialMediaIcon = ()=>{
       function viewProject(){
         const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_social_media";
         axios.get(url).then((res)=>{
-            console.log(res.data)
             setViewData(res.data.data);
         }).catch((error)=>{
             console.log(error)
@@ -83,11 +82,13 @@ const CreateSocialMediaIcon = ()=>{
       } 
  
       function handleEdit(){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_project";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_social_media";
         const data = {
-     
-    
-       }
+          url:`${link}`,
+          name:`${icon}`,
+          color:`${color}`,
+          SID:`${id}`
+      }
         axios.patch(url,data).then((res)=>{
           viewProject();
           setUpdateAlert(true);
@@ -106,8 +107,8 @@ const CreateSocialMediaIcon = ()=>{
       }
     
       function handleDelete(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_project";
-        axios.delete(url,{data:{Pid:id}}).then((res)=>{
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_social_media";
+        axios.delete(url,{data:{Sid:id}}).then((res)=>{
           if(res.data.message === "Successfully Deleted!"){
             viewProject()
             setDeleteAlert(true);
@@ -121,10 +122,10 @@ const CreateSocialMediaIcon = ()=>{
       }
 
       function handleStatusTrue(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_project";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_media";
         const data = {
-          Pid:id,
-          visibility:true
+          SID:id,
+          Svisible:true
        }
         axios.patch(url,data).then((res)=>{
           viewProject();
@@ -143,10 +144,10 @@ const CreateSocialMediaIcon = ()=>{
         })
       }
       function handleStatusFalse(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_project";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_media";
         const data = {
-          Pid:id,
-          visibility:false
+          SID:id,
+          Svisible:false
        }
         axios.patch(url,data).then((res)=>{
           viewProject();
@@ -165,8 +166,12 @@ const CreateSocialMediaIcon = ()=>{
         })
       }
 
-      const handleEditForm =() =>{
-
+      const handleEditForm =(data) =>{
+          setEditFormButton(true);
+          setId(data.sm_id);
+          setLink(data.icon_url);
+          setColor(data.icon_color);
+          setIcon(data.icon_name)
       }
 
 
@@ -201,7 +206,6 @@ const CreateSocialMediaIcon = ()=>{
           {successAlert && <Alert severity='success' style={{marginBottom:"20px"}}>Created Successfully</Alert> }
           {errorAlert && <Alert severity='error' style={{marginBottom:"20px"}}>Data Already Exist!</Alert> }
           <form id='form' style={{display:"flex",flexDirection:"column"}}>
-          <input placeholder='Social Media' type='text' onChange={(e)=>setName(e.target.value)} value={name}  />
           <input placeholder='URL' type='text' onChange={(e)=>setLink(e.target.value)} value={link}/>
           <select onChange={(e)=>setIcon(e.target.value)}>
                 <option>Select Icon</option>
@@ -237,7 +241,6 @@ const CreateSocialMediaIcon = ()=>{
             <table>
               <tr>
                 <th style={{ backgroundColor: "#ffcb00" }}>S.No</th>
-                <th style={{ backgroundColor: "#ffcb00" }}>Social Media</th>
                 <th style={{ backgroundColor: "#ffcb00" }}>Link</th>
                 <th style={{ backgroundColor: "#ffcb00" }}>Icon</th>
                 <th style={{ backgroundColor: "#ffcb00" }}>Status</th>
@@ -249,13 +252,12 @@ const CreateSocialMediaIcon = ()=>{
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{data.name}</td>
-                      <td><FiLink/></td>
-                      <td style={{cursor:"pointer"}}><i class="fa-brands fa-facebook"></i></td>
+                      <td><a href={data.icon_url} target="_blank" rel="noreferrer" ><FiLink/></a></td>
+                      <td style={{cursor:"pointer"}}><i className={data.icon_name} style={{color:data.icon_color}}></i></td>
                       <td>
                         <Switch
                           checked={data.visibility}
-                          onChange={data.visibility ? ()=>handleStatusFalse(data.pid) : ()=>handleStatusTrue(data.pid) }
+                          onChange={data.visibility ? ()=>handleStatusFalse(data.sm_id) : ()=>handleStatusTrue(data.sm_id) }
                           data={true}
                           sx={{
                             '& .MuiSwitch-thumb': {
@@ -265,7 +267,7 @@ const CreateSocialMediaIcon = ()=>{
                         />
                       </td>
                       <td onClick={()=>handleEditForm(data)}><i class="fa-solid fa-pen-to-square"></i></td>
-                      <td onClick={()=>handleDelete(data.pid)}><i class="fa-sharp fa-solid fa-trash"></i></td>
+                      <td onClick={()=>handleDelete(data.sm_id)}><i class="fa-sharp fa-solid fa-trash"></i></td>
                     </tr>
                   )
                 })
