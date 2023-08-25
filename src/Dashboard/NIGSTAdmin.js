@@ -17,6 +17,9 @@ import HomeCarouselImage from "./HomeCarouselImage";
 import CreateFooter from "./CreateFooter";
 import CreateHeader from "./CreateHeader";
 import CreateSocialMediaIcon from "./CreateSocialMediaIcon";
+import NigstCampus from "./NigstCampus";
+import SportsFacility from "./SportsFacility";
+import NigstHostel from "./NigstHostel";
 
 
 export default function NIGSTAdmin() {
@@ -35,6 +38,9 @@ export default function NIGSTAdmin() {
   const [footer,setFooter] = useState(false);
   const [header,setHeader] = useState(false);
   const [socialMedia,setSocialMedia] = useState(false);
+  const [nigstCampus,setNigstCampus] = useState(false);
+  const [sports,setSports] = useState(false);
+  const [hostel,setHostel] = useState(false);
 
   function departmentFun() {
     setDepartmentCreation(true);
@@ -52,7 +58,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function facultyPositionFun() {
     setFacultyPositionCreation(true);
@@ -71,7 +79,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function usersFun() {
     setUsers(true);
@@ -91,7 +101,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function courseAssignmentFun() {
     setCourseAssignment(true);
@@ -111,7 +123,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function handleTenderFun() {
     setTender(true);
@@ -131,7 +145,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function announcementFun(){
     setAnnouncement(true);
@@ -151,7 +167,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-    
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function ImageUploadFun(){
     setGalleryimage(true);
@@ -170,7 +188,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
 
   function SOIFun(){
@@ -190,7 +210,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
 
   function CreateBannerFun(){
@@ -210,7 +232,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
 
   function marqueeFun(){
@@ -230,7 +254,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
 
 
@@ -251,7 +277,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function carouselFun(){
     setHomeCarousel(true);
@@ -270,7 +298,9 @@ export default function NIGSTAdmin() {
     setFooter(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function createFooterFun(){
     setFooter(true);
@@ -289,7 +319,9 @@ export default function NIGSTAdmin() {
     setFacultyPositionCreation(false);
     setHeader(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
   function createHeaderFun(){
     setHeader(true);
@@ -308,11 +340,82 @@ export default function NIGSTAdmin() {
     setDepartmentCreation(false);
     setFacultyPositionCreation(false);
     setSocialMedia(false);
-
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
   }
 
   function createSocialFun(){
     setSocialMedia(true);
+    setHeader(false);
+    setFooter(false);
+    setHomeCarousel(false);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+    setNigstCampus(false);
+    setHostel(false);
+    setSports(false);
+  }
+
+  function nigstCampusFun(){
+    setNigstCampus(true);
+    setSocialMedia(false)
+    setHeader(false);
+    setFooter(false);
+    setHomeCarousel(false);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+    setHostel(false);
+    setSports(false);
+  }
+
+  function hostelFun(){
+    setHostel(true)
+    setSports(false);
+    setNigstCampus(false);
+    setSocialMedia(false)
+    setHeader(false);
+    setFooter(false);
+    setHomeCarousel(false);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
+  }
+
+  function sportsFun(){
+    setSports(true);
+    setHostel(false)
+    setNigstCampus(false);
+    setSocialMedia(false)
     setHeader(false);
     setFooter(false);
     setHomeCarousel(false);
@@ -443,6 +546,27 @@ export default function NIGSTAdmin() {
               Social Media
             </li>
             }
+              {
+              nigstCampus ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={nigstCampusFun}>
+              Campus
+            </li> : <li className="p-3 " onClick={nigstCampusFun}>
+              Campus
+            </li>
+            }
+             {
+              sports ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={sportsFun}>
+              Sports
+            </li> : <li className="p-3 " onClick={sportsFun}>
+              Sports
+            </li>
+            }
+             {
+              hostel ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={hostelFun}>
+              Hostel
+            </li> : <li className="p-3 " onClick={hostelFun}>
+              Hostel
+            </li>
+            }
             {/* {
               facultyAdmin ? <li style={{background:"#ffcb00"}} onClick={facultyAdminCreationFun}>
               Faculty Admin </li> : <li className="p-3 " onClick={facultyAdminCreationFun}>
@@ -479,6 +603,9 @@ export default function NIGSTAdmin() {
           {footer && <CreateFooter/>}
           {header && <CreateHeader/>}
           {socialMedia && <CreateSocialMediaIcon/>}
+          {nigstCampus && <NigstCampus/>}
+          {sports && <SportsFacility/>}
+          {hostel && <NigstHostel/>}
         </div>
       </div>
     </div>
