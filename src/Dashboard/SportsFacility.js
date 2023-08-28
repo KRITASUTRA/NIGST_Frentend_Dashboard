@@ -31,7 +31,7 @@ const SportsFacility = () => {
         }
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_sports_facility";
         const formData = new FormData();
-        formData.append('Cdescription', text);
+        formData.append('description', text);
         formData.append('image', image);
        
         axios.post(mUrl, formData).then((res) => {
@@ -66,13 +66,11 @@ const SportsFacility = () => {
     function handleEdit(){
         setCircularResponse(true)
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_sports_facility";
-        const data={
-            id:`${campusId}`,
-            description:`${text}`,
-            path:`${image}`
-        };
-        console.log(campusId)
-        axios.patch(mUrl, data).then((res) => {
+        const formData = new FormData();
+        formData.append('description', text);
+        formData.append('image', image);
+        formData.append('id', campusId);
+        axios.patch(mUrl, formData).then((res) => {
             document.getElementById('form').reset();
             setText("");
             setEditFormButton(false);
@@ -111,9 +109,7 @@ const SportsFacility = () => {
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_sports_facility";
         const data={
             id:`${id}`,
-            description:`${text}`,
             visibility: true,
-            path:`${image}`
         };
         axios.patch(mUrl,data).then((res)=>{
             viewMarquee();
@@ -129,9 +125,7 @@ const SportsFacility = () => {
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_campus/viewweb/update_sports_facility";
         const data={
             id:`${id}`,
-            description:`${text}`,
             visibility: false,
-            path:`${image}`
         };
         axios.patch(mUrl,data).then((res)=>{
             viewMarquee();
@@ -237,7 +231,7 @@ const SportsFacility = () => {
                                 <th style={{ backgroundColor: "#ffcb00" }}>Text</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>View Image</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Edit</th>
-                                <th style={{ backgroundColor: "#ffcb00" }}>Others</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Status</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Delete</th>
                             </tr>
                         </thead>
