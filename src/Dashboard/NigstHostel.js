@@ -31,9 +31,8 @@ const NigstHostel = () => {
         }
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_nigst_hostel";
         const formData = new FormData();
-        formData.append('Cdescription', text);
+        formData.append('description', text);
         formData.append('image', image);
-       
         axios.post(mUrl, formData).then((res) => {
             console.log(res.data)
             document.getElementById('form').reset();
@@ -65,14 +64,13 @@ const NigstHostel = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/edit_marquee";
-        const data={
-            id:`${campusId}`,
-            description:`${text}`,
-            path:`${image}`
-        };
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
+        const formData = new FormData();
+        formData.append('id', campusId  );
+        formData.append('description', text);
+        formData.append('image', image);
         console.log(campusId)
-        axios.patch(mUrl, data).then((res) => {
+        axios.patch(mUrl, formData).then((res) => {
             document.getElementById('form').reset();
             setText("");
             setEditFormButton(false);
@@ -111,9 +109,7 @@ const NigstHostel = () => {
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
         const data={
             id:`${id}`,
-            description:`${text}`,
             visibility: true,
-            path:`${image}`
         };
         axios.patch(mUrl,data).then((res)=>{
             viewMarquee();
@@ -126,12 +122,10 @@ const NigstHostel = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_campus/viewweb/update_nigst_hostel";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
         const data={
             id:`${id}`,
-            description:`${text}`,
             visibility: false,
-            path:`${image}`
         };
         axios.patch(mUrl,data).then((res)=>{
             viewMarquee();
@@ -157,9 +151,9 @@ const NigstHostel = () => {
         console.log(url)
         const newWindow = window.open();
         if (!newWindow) {
-          alert('Pop-up blocked. Please allow pop-ups for this website.');
+            alert('Pop-up blocked. Please allow pop-ups for this website.');
         } else {
-          newWindow.document.body.innerHTML = "<embed width='100%' height='100%' src='" + url + "' ></embed>";
+            newWindow.document.body.innerHTML = "<embed width='100%' height='100%' src='" + url + "' ></embed>";
         }
       }
 

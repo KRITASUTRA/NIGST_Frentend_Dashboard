@@ -106,7 +106,7 @@ const SportsFacility = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_sports_facility";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_facility";
         const data={
             id:`${id}`,
             visibility: true,
@@ -122,7 +122,7 @@ const SportsFacility = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_campus/viewweb/update_sports_facility";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_facility";
         const data={
             id:`${id}`,
             visibility: false,
@@ -189,7 +189,7 @@ const SportsFacility = () => {
                 )}
                 <h3 style={{ textAlign: "left", fontSize: "20px", fontWeight: "bold" , marginBottom:"0px"}}>{editFormButton ? <>Edit</> : <>Create New </>} Sports </h3>
                 {emptyFieldAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>All fields required</Alert>}
-                {successAlert && <Alert severity='success' style={{ marginBottom: "20px" }}>Campus created successfully</Alert>}
+                {successAlert && <Alert severity='success' style={{ marginBottom: "20px" }}>Sports created successfully</Alert>}
                 {errorAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Error creating campus!</Alert>}
                 <form id="form" style={{ display: 'flex', flexDirection: 'column' }}>
                         <input
