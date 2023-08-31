@@ -20,6 +20,7 @@ import CreateSocialMediaIcon from "./CreateSocialMediaIcon";
 import NigstCampus from "./NigstCampus";
 import SportsFacility from "./SportsFacility";
 import NigstHostel from "./NigstHostel";
+import CreateGovernance from "./CreateGovernance";
 
 
 export default function NIGSTAdmin() {
@@ -41,6 +42,7 @@ export default function NIGSTAdmin() {
   const [nigstCampus,setNigstCampus] = useState(false);
   const [sports,setSports] = useState(false);
   const [hostel,setHostel] = useState(false);
+  const [governance,setGovernance] = useState(false);
 
   function departmentFun() {
     setDepartmentCreation(true);
@@ -61,6 +63,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function facultyPositionFun() {
     setFacultyPositionCreation(true);
@@ -82,6 +86,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function usersFun() {
     setUsers(true);
@@ -104,6 +110,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function courseAssignmentFun() {
     setCourseAssignment(true);
@@ -126,6 +134,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function handleTenderFun() {
     setTender(true);
@@ -148,6 +158,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function announcementFun(){
     setAnnouncement(true);
@@ -170,6 +182,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function ImageUploadFun(){
     setGalleryimage(true);
@@ -191,6 +205,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
   function SOIFun(){
@@ -213,6 +229,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
   function CreateBannerFun(){
@@ -235,6 +253,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
   function marqueeFun(){
@@ -257,6 +277,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
 
@@ -280,6 +302,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function carouselFun(){
     setHomeCarousel(true);
@@ -301,6 +325,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function createFooterFun(){
     setFooter(true);
@@ -322,6 +348,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
   function createHeaderFun(){
     setHeader(true);
@@ -343,6 +371,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
   function createSocialFun(){
@@ -365,6 +395,8 @@ export default function NIGSTAdmin() {
     setNigstCampus(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
   function nigstCampusFun(){
@@ -387,6 +419,8 @@ export default function NIGSTAdmin() {
     setFacultyPositionCreation(false);
     setHostel(false);
     setSports(false);
+    setGovernance(false);
+
   }
 
   function hostelFun(){
@@ -409,6 +443,8 @@ export default function NIGSTAdmin() {
     // setCourseCategory(false);
     setDepartmentCreation(false);
     setFacultyPositionCreation(false);
+    setGovernance(false);
+
   }
 
   function sportsFun(){
@@ -431,9 +467,33 @@ export default function NIGSTAdmin() {
     // setCourseCategory(false);
     setDepartmentCreation(false);
     setFacultyPositionCreation(false);
+    setGovernance(false);
+
+  }
+
+  function governanceFun(){
+    setGovernance(true);
+    setSports(false);
+    setHostel(false)
+    setNigstCampus(false);
+    setSocialMedia(false)
+    setHeader(false);
+    setFooter(false);
+    setHomeCarousel(false);
+    setViewContactFormReport(false);
+    setMarquee(false)
+    setCBanner(false)
+    setSOIProject(false);
+    setGalleryimage(false);
+    setAnnouncement(false);
+    setTender(false);
+    setCourseAssignment(false);
+    setUsers(false);
+    // setCourseCategory(false);
+    setDepartmentCreation(false);
+    setFacultyPositionCreation(false);
   }
   function logout(){
-
     window.location.hash = "/";
     localStorage.clear("user");
   }
@@ -567,6 +627,13 @@ export default function NIGSTAdmin() {
               Hostel
             </li>
             }
+             {
+              governance ? <li style={{ background: "#1b3058", color: "#ffcb00" }}  onClick={governanceFun}>
+              Governance
+            </li> : <li className="p-3 " onClick={governanceFun}>
+              Governance
+            </li>
+            }
             {/* {
               facultyAdmin ? <li style={{background:"#ffcb00"}} onClick={facultyAdminCreationFun}>
               Faculty Admin </li> : <li className="p-3 " onClick={facultyAdminCreationFun}>
@@ -606,6 +673,7 @@ export default function NIGSTAdmin() {
           {nigstCampus && <NigstCampus/>}
           {sports && <SportsFacility/>}
           {hostel && <NigstHostel/>}
+          {governance && <CreateGovernance/>}
         </div>
       </div>
     </div>

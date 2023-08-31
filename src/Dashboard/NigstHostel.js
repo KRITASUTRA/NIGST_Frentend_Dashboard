@@ -106,7 +106,7 @@ const NigstHostel = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
         const data={
             id:`${id}`,
             visibility: true,
@@ -122,7 +122,7 @@ const NigstHostel = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
         const data={
             id:`${id}`,
             visibility: false,
