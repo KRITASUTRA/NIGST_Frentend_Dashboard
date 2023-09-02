@@ -35,7 +35,7 @@ const CreateGovernance = () => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', description);
-        formData.append('position', position);
+        formData.append('designation', position);
         formData.append('image', image);
         axios.post(mUrl, formData).then((res) => {
             console.log(res.data)
@@ -64,20 +64,20 @@ const CreateGovernance = () => {
 
     function handleEditForm(data) {
         setEditFormButton(true);
-        setName(data.description);
-        setDescription(data)
-        setPosition(data)
+        setName(data.name);
+        // setDescription(data)
+        setPosition(data.designation)
         setCampusId(data.id);
     }
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_governance";
         const formData = new FormData();
         formData.append('id', campusId  );
         formData.append('name', name);
         formData.append('description', description);
-        formData.append('position', position);
+        formData.append('designation', position);
         formData.append('image', image);
         axios.patch(mUrl, formData).then((res) => {
             document.getElementById('form').reset();
@@ -102,7 +102,7 @@ const CreateGovernance = () => {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_nigst_hostel";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_governance";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -117,7 +117,7 @@ const CreateGovernance = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
         const data={
             id:`${id}`,
             visibility: true,
@@ -133,7 +133,7 @@ const CreateGovernance = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
         const data={
             id:`${id}`,
             visibility: false,
@@ -169,7 +169,8 @@ const CreateGovernance = () => {
 
     useEffect(() => {
         viewMarquee();
-    }, [])
+    }, []);
+    
   return (
     <>
             {updateAlert && <div style={{ textAlign: "center", width: "20%", margin: "auto" }}><Alert severity='success' style={{ marginTop: "20px" }}>Update Successfully</Alert></div>}
@@ -246,13 +247,14 @@ const CreateGovernance = () => {
                     }
                 </form>
             </div>
-           { (viewData.length >0)&& <div>
+        {(viewData.length >0)&& <div>
                 <div className="user-details-wrapper" style={{ maxHeight: "180px", overflowY: "scroll" }}>
                     <table >
                         <thead>
                             <tr>
                                 <th style={{ backgroundColor: "#ffcb00" }}>S.No</th>
-                                <th style={{ backgroundColor: "#ffcb00" }}>Text</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Name</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Position</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>View Image</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Edit</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Others</th>
@@ -263,7 +265,8 @@ const CreateGovernance = () => {
                             {viewData.map((data, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{data.description}</td>
+                                    <td>{data.name}</td>
+                                    <td>{data.designation}</td>
                                     <td style={{cursor:"pointer"}} onClick={()=>viewImage(data.path)}><BsImageFill/></td>
                                     <td onClick={() => handleEditForm(data)}>
                                         <i className="fa-solid fa-pen-to-square"></i>
@@ -292,8 +295,7 @@ const CreateGovernance = () => {
             {
         viewData.length <=0  && 
         <div style={{width:"100%",textAlign:"center" , fontSize:"30px",marginTop:"200px"}}>No data to show</div>
-      
-      }
+    }
             <div style={{margin:"15px 0px 0px 28px"}}>
             </div>
         </>
