@@ -5,7 +5,7 @@ import { BsImageFill } from 'react-icons/bs';
 
 
 
-const CreateGovernance = () => {
+const CreateEvaluation = () => {
     const [responseCircular, setCircularResponse] = useState(false);
     const [errorAlert, setErrorAlert] = useState(false);
     const [successAlert, setSuccessAlert] = useState(false);
@@ -31,7 +31,7 @@ const CreateGovernance = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_governance";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_evaluation";
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', description);
@@ -150,7 +150,7 @@ const CreateGovernance = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_governance";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_evaluation";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {
@@ -198,7 +198,7 @@ const CreateGovernance = () => {
                         <CircularProgress style={{ height: "50px", width: "50px" }} />
                     </div>
                 )}
-                <h3 style={{ textAlign: "left", fontSize: "20px", fontWeight: "bold" , marginBottom:"0px"}}>{editFormButton ? <>Edit</> : <>Create New </>} Governance </h3>
+                <h3 style={{ textAlign: "left", fontSize: "20px", fontWeight: "bold" , marginBottom:"0px"}}>{editFormButton ? <>Edit</> : <>Create New </>} Evaluation </h3>
                 {emptyFieldAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>All fields required</Alert>}
                 {successAlert && <Alert severity='success' style={{ marginBottom: "20px" }}>Governance created successfully</Alert>}
                 {errorAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Error creating Governance!</Alert>}
@@ -302,4 +302,4 @@ const CreateGovernance = () => {
   )
 }
 
-export default CreateGovernance
+export default CreateEvaluation
