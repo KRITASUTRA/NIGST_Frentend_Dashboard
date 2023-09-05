@@ -15,7 +15,7 @@ const CreateEvaluation = () => {
     const [emptyFieldAlert, setEmptyFieldAlert] = useState(false);
     const [name,setName] = useState("");
     const [position,setPosition] = useState("");
-    const [description,setDescription] = useState("");
+    const [designation,setDesignation] = useState("");
     const [image,setImage] = useState("");
     const [editFormButton,setEditFormButton] = useState(false);
     const [deleteErrorAlert,setDeleteErrorAlert] = useState(false);
@@ -34,7 +34,7 @@ const CreateEvaluation = () => {
         const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_evaluation";
         const formData = new FormData();
         formData.append('name', name);
-        formData.append('description', description);
+        formData.append('description', designation);
         formData.append('designation', position);
         formData.append('image', image);
         axios.post(mUrl, formData).then((res) => {
@@ -42,7 +42,7 @@ const CreateEvaluation = () => {
             document.getElementById('form').reset();
             setName("");
             setPosition("");
-            setDescription("");
+            setDesignation("");
             viewMarquee();
             setCircularResponse(false);
             setSuccessAlert(true);
@@ -72,18 +72,18 @@ const CreateEvaluation = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_governance";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_evaluation";
         const formData = new FormData();
         formData.append('id', campusId  );
         formData.append('name', name);
-        formData.append('description', description);
-        formData.append('designation', position);
+        formData.append('designation', designation);
         formData.append('image', image);
+        formData.append('position', position);
         axios.patch(mUrl, formData).then((res) => {
             document.getElementById('form').reset();
             setName("");
             setPosition("");
-            setDescription("");
+            setDeleteErrorAlert("");
             setEditFormButton(false);
             viewMarquee();
             setCircularResponse(false);
@@ -102,7 +102,7 @@ const CreateEvaluation = () => {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_governance";
+        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_evaluation";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -117,7 +117,7 @@ const CreateEvaluation = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_evaluation";
         const data={
             id:`${id}`,
             visibility: true,
@@ -133,7 +133,7 @@ const CreateEvaluation = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
+        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_evaluation";
         const data={
             id:`${id}`,
             visibility: false,
@@ -218,10 +218,10 @@ const CreateEvaluation = () => {
                             variant="outlined"
                         />
                         <input
-                            placeholder="Description"
+                            placeholder="Designation"
                             type="text"
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description}
+                            onChange={(e) => setDesignation(e.target.value)}
+                            value={designation}
                             variant="outlined"
                         />
                         <input type='file'
