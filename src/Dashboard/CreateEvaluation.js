@@ -99,7 +99,7 @@ const CreateEvaluation = () => {
             }, 5000);
             console.log(error);
         })
-    }
+    } 
 
     function handleDelete(id) {
         const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_evaluation";
