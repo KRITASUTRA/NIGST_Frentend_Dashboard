@@ -65,8 +65,8 @@ const CreateEvaluation = () => {
     function handleEditForm(data) {
         setEditFormButton(true);
         setName(data.name);
-        // setDescription(data)
-        setPosition(data.designation)
+        setDesignation(data.designation)
+        setPosition(data.position)
         setCampusId(data.id);
     }
 
@@ -255,6 +255,7 @@ const CreateEvaluation = () => {
                                 <th style={{ backgroundColor: "#ffcb00" }}>S.No</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Name</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Position</th>
+                                <th style={{ backgroundColor: "#ffcb00" }}>Designation</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>View Image</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Edit</th>
                                 <th style={{ backgroundColor: "#ffcb00" }}>Others</th>
@@ -266,6 +267,7 @@ const CreateEvaluation = () => {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{data.name}</td>
+                                    <td>{data.position}</td>
                                     <td>{data.designation}</td>
                                     <td style={{cursor:"pointer"}} onClick={()=>viewImage(data.path)}><BsImageFill/></td>
                                     <td onClick={() => handleEditForm(data)}>
