@@ -35,7 +35,7 @@ export default function SOIProject() {
         }, 5000);
         return;
     }
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_project";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_project";
     const formData= new FormData();
     formData.append("Pname",pName);
     formData.append("Pdescription",pDescription);
@@ -71,7 +71,7 @@ export default function SOIProject() {
 
 
   function viewProject(){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_project";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_project";
     axios.get(url).then((res)=>{
         setViewData(res.data.data);
     }).catch((error)=>{
@@ -98,7 +98,7 @@ export default function SOIProject() {
   }
 
   function handleEdit(){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_project";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_project";
     const data = {
     Pname:`${pName}`,
     Pdescription:`${pDescription}`,
@@ -124,7 +124,7 @@ export default function SOIProject() {
   }
 
   function handleDelete(id){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_project";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_project";
     axios.delete(url,{data:{Pid:id}}).then((res)=>{
       if(res.data.message === "Successfully Deleted!"){
         viewProject()
@@ -147,7 +147,7 @@ export default function SOIProject() {
     setPUrl(data.url)
   }
   function handleStatusTrue(id){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_project";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_project";
     const data = {
       Pid:id,
       visibility:true
@@ -169,7 +169,7 @@ export default function SOIProject() {
     })
   }
   function handleStatusFalse(id){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_project";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_project";
     const data = {
       Pid:id,
       visibility:false

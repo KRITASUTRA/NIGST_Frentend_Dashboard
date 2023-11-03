@@ -31,7 +31,7 @@ const CreateEvaluation = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_evaluation";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_evaluation";
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', designation);
@@ -72,7 +72,7 @@ const CreateEvaluation = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_evaluation";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_evaluation";
         const formData = new FormData();
         formData.append('id', campusId  );
         formData.append('name', name);
@@ -102,7 +102,7 @@ const CreateEvaluation = () => {
     } 
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_evaluation";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_evaluation";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -117,7 +117,7 @@ const CreateEvaluation = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_evaluation";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_evaluation";
         const data={
             id:`${id}`,
             visibility: true,
@@ -133,7 +133,7 @@ const CreateEvaluation = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_evaluation";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_evaluation";
         const data={
             id:`${id}`,
             visibility: false,
@@ -150,7 +150,7 @@ const CreateEvaluation = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_evaluation";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_evaluation";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

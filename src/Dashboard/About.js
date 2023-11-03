@@ -26,7 +26,7 @@ const About = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_about_section_images";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_about_section_images";
         const formData = new FormData();
         formData.append('image', image);
         axios.post(mUrl, formData).then((res) => {
@@ -54,7 +54,7 @@ const About = () => {
 
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_images";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_images";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -69,7 +69,7 @@ const About = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_image";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_image";
         const data={
             id:`${id}`,
             visibility: true,
@@ -85,7 +85,7 @@ const About = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_image";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_image";
         const data={
             id:`${id}`,
             visibility: false,
@@ -102,7 +102,7 @@ const About = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_images";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_images";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

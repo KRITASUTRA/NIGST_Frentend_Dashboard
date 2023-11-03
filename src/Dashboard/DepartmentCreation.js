@@ -252,7 +252,7 @@ export default function DepartmentCreation() {
     let objectKeys = Object.keys(myCountryCodesObject);
     setCountryCode(objectKeys);
     setCountryCodeObject(myCountryCodesObject);
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/othercategory";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/othercategory";
     axios.get(url).then((res) => {
       if (!res.data.message === "Nothing to show or not created!.") {
         setOtherDropdown(res.data.organizations)
@@ -266,7 +266,7 @@ export default function DepartmentCreation() {
   }, []);
 
   const viewOrganization = () => {
-    const urlView = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/organizationfilter?type=${typeFilter}&category=${categoryFilter}`;
+    const urlView = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/organizationfilter?type=${typeFilter}&category=${categoryFilter}`;
     axios
       .get(urlView)
       .then((res) => {
@@ -309,7 +309,7 @@ export default function DepartmentCreation() {
         department: OrganisationType === "PSU – Central Government" || OrganisationType === "Central Government Organization" ? department !== "" ? `${department}` : "" : "",
         category: OrganisationType === "Other" ? `${otherOrganizationValue}` ? otherOrganizationValue === "Add new" ? inputs.category : `${otherOrganizationValue}` : "" : `${categoryOfOrganisation}`,
       };
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/d";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/d";
       axios
         .post(url, data)
         .then((res) => {

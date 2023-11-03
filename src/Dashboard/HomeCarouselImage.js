@@ -31,7 +31,7 @@ export default function HomeCarouselImage() {
             }, 5000);
             return;
         }
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/upload_carousel";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/upload_carousel";
         const formData = new FormData();
         formData.append("image", image);
         axios.post(url, formData).then((res) => {
@@ -61,7 +61,7 @@ export default function HomeCarouselImage() {
 
 
     function viewProject() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/carousel_admin";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/carousel_admin";
         axios.get(url).then((res) => {
             setViewData(res.data.images);
         }).catch((error) => {
@@ -85,7 +85,7 @@ export default function HomeCarouselImage() {
 
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_carousel";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_carousel";
         axios.delete(url, { data: { cid: id } }).then((res) => {
             if (res.data.message === "Successfully Deleted") {
                 viewProject()
@@ -101,7 +101,7 @@ export default function HomeCarouselImage() {
 
 
     function handleStatusTrue(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/carousel_visibility";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/carousel_visibility";
         const data = {
             cid: id,
             status: true
@@ -123,7 +123,7 @@ export default function HomeCarouselImage() {
         })
     }
     function handleStatusFalse(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/carousel_visibility";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/carousel_visibility";
         const data = {
             cid: id,
             status: false

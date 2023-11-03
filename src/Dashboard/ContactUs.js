@@ -35,7 +35,7 @@ export default function Contact() {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/create_office";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/create_office";
         const data = {
             name: `${name}`,
             email: `${email}`,
@@ -69,7 +69,7 @@ export default function Contact() {
 
     function handleEdit(){
         setCircularResponse(true);
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/edit_office";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/edit_office";
         const data = {
             email: `${email}`,
             subject:`${name}`,
@@ -98,7 +98,7 @@ export default function Contact() {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/delete_office";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/delete_office";
         axios.delete(url,{data:{oid:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -114,7 +114,7 @@ export default function Contact() {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/edit_visi";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/edit_visi";
         const data={
             oid:`${id}`,
             visibility:true
@@ -130,7 +130,7 @@ export default function Contact() {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/edit_visi";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/edit_visi";
         const data={
             oid:`${id}`,
             visibility:false
@@ -146,7 +146,7 @@ export default function Contact() {
         })
     }
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/office_aview";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/office_aview";
         axios.get(url).then((res) => {
             setViewData(res.data.office)
         }).catch((error) => {

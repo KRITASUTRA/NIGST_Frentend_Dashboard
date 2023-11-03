@@ -104,7 +104,7 @@ const [error1,setError1] = useState(false);
 
 
   function orgViewFun(){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/v";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/v";
     axios.get(url).then((res) => {
       setOrgView(res.data)
     }).catch((error) => {
@@ -113,7 +113,7 @@ const [error1,setError1] = useState(false);
   }
 
   function departmentView() {
-    const viewUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/viewda";
+    const viewUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/viewda";
     axios.get(viewUrl).then((res) => {
       setViewCourse(res.data.reverse());
     }).catch((error) => {
@@ -123,7 +123,7 @@ const [error1,setError1] = useState(false);
 
   function handleCourseCodeAndNo(event) {
     event.preventDefault();
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/course/send_course/${code}/${number}/${category}`
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/course/send_course/${code}/${number}/${category}`
     axios.get(url).then((res) => {
       setSecondStep(true);
       setFirstStep(false)
@@ -141,7 +141,7 @@ const [error1,setError1] = useState(false);
   }
   function handleSecondStepCourseId(event) {
     event.preventDefault();
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/course/send_batch_info/${firstStepData[0].courseid}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/course/send_batch_info/${firstStepData[0].courseid}`;
     axios.get(url).then((res) => {
       setSecondStep(false);
       setThirdStep(true)
@@ -157,7 +157,7 @@ const [error1,setError1] = useState(false);
 
   function handleFinalSubmit(event) {
     event.preventDefault();
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/organization_assign";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/organization_assign";
     const data = {
       organization: `${orgName}`,
       courseid: `${firstStepData[0].courseid}`,
@@ -187,7 +187,7 @@ const [error1,setError1] = useState(false);
       organization:`${data1.organization_name}`,
       schedulingID:`${data1.scheduling_id}`
     }
-    const url ="http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/deassign";
+    const url ="http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/deassign";
     axios.delete(url,{data}).then((res)=>{
       departmentView();
     }).catch((error)=>{

@@ -30,7 +30,7 @@ export default function Login() {
   function handleLoginAdmin(e) {
     e.preventDefault();
     setCircularResponse(true);
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sadmin/login";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sadmin/login";
     const data = {
       username: `${inputs.email}`,
       password: `${inputs.password}`
@@ -74,7 +74,7 @@ export default function Login() {
   function handleLoginFaculty(e) {
     setCircularResponse(true);
     e.preventDefault();
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/login";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/login";
     const data = {
       email: `${inputs.email}`,
       password: `${inputs.password}`

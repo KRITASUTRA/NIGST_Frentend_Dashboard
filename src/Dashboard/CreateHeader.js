@@ -59,7 +59,7 @@ export default function CreateHeader() {
             return;
         }
         setCircularResponse(true);
-        const urlCreate = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_header";
+        const urlCreate = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_header";
         const formData = new FormData();
         formData.append("Hname",name);
         formData.append("url",url);
@@ -94,7 +94,7 @@ export default function CreateHeader() {
 
 
     function viewProject() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_header";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_header";
         axios.get(url).then((res) => {
             setViewData(res.data.data);
         }).catch((error) => {
@@ -103,7 +103,7 @@ export default function CreateHeader() {
     }
 
     function handleDelete(id) {
-        const urlDelete = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_header";
+        const urlDelete = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_header";
         axios.delete(urlDelete, { data: { hid: id } }).then((res) => {
             if (res.data.message === "Successfully Deleted!") {
                 viewProject()
@@ -119,7 +119,7 @@ export default function CreateHeader() {
 
 
     function handleStatusTrue(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_header";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_header";
         const data = {
             HID:id,
             Hvisible:true
@@ -143,7 +143,7 @@ export default function CreateHeader() {
         })
     }
     function handleStatusFalse(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_header";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_header";
         const data = {
             HID:id,
             Hvisible:false
@@ -183,7 +183,7 @@ export default function CreateHeader() {
             }, 5000);
             return;
         }
-        const urlUpdate = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_header";
+        const urlUpdate = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_header";
         const data={
             Hname:name,
             url:url,

@@ -69,7 +69,7 @@ function archiveFun(){
  }
 
 function viewPDF(id) {
-  const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/vpdf/${id}`;
+  const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/vpdf/${id}`;
   axios.get(url, { responseType: "blob" }).then((res) => {
     const objectUrl = URL.createObjectURL(res.data);
     const newWindow = window.open();
@@ -90,7 +90,7 @@ useEffect(()=>{
 
 
 function viewArchiveTenderUI(){
-  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/view_archive";
+  const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/view_archive";
   axios.get(url).then((res)=>{
   setViewArchive(res.data.data);
   }).catch((error)=>{
@@ -101,7 +101,7 @@ function viewArchiveTenderUI(){
 
 
 function tenderViewFun(){
-  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/view";
+  const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/view";
   axios.get(url).then((res)=>{
     setViewTender(res.data.tender.reverse());
   }).catch((error)=>{
@@ -135,7 +135,7 @@ function handleSubmit(e) {
     return;
   }
   if(file.current.files[0] !== undefined && input.title && input.description && input.starDate && input.endDate && input.ref ){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/create";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/create";
     const formData = new FormData();
     formData.append("title", input.title);
     formData.append("tenderRefNo", input.ref);
@@ -173,7 +173,7 @@ function handleCorrigendum(e){
   formData.append("corrigendum", input.corrigendum);
   formData.append("tender_number", tenderValue);
   formData.append("pdf", corrigendumPdf.current.files[0]);
-  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/corrigendum"
+  const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/corrigendum"
   axios.post(url,formData).then((res)=>{
     setSuccessAlert(true);
     document.getElementById('form').reset();
@@ -191,7 +191,7 @@ function handleCorrigendum(e){
 function handleArchive(e){
   setOpen(false);
   viewArchiveTenderUI();
-  const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/archive";
+  const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/archive";
   const data = {
     tender_number:`${tenderNo}`
   }
@@ -221,7 +221,7 @@ const handleClose = () => {
 };
 
 function corrigendumPDFView(corrigendumID){
-  const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/corri_pdf/${corrigendumID}`;
+  const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/corri_pdf/${corrigendumID}`;
   axios.get(url, { responseType: "blob" }).then((res) => {
     const objectUrl = URL.createObjectURL(res.data);
     const newWindow = window.open();
@@ -237,7 +237,7 @@ function corrigendumPDFView(corrigendumID){
 }
 
 function archiveCorrigendumPDFView(id){
-  const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/ar_corri_pdf/${id}`;
+  const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/ar_corri_pdf/${id}`;
   axios.get(url, { responseType: "blob" }).then((res) => {
     const objectUrl = URL.createObjectURL(res.data);
     const newWindow = window.open();
@@ -282,7 +282,7 @@ function handleEdit(data){
     }, 5000);
     return;
   }
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/tender/edit";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/edit";
     const formData = new FormData();
     formData.append("title", input.title);
     formData.append("tenderRefNo", input.ref);

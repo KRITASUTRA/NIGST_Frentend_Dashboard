@@ -39,7 +39,7 @@ export default function ChangePassword() {
       return;
     }
     let token = window.location.href.split("/")[5];
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/reset";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/reset";
     const data ={
       password:`${input.password}`,
       resetToken:`${token}`

@@ -65,7 +65,7 @@ export default function CreateFooter() {
                 return;
             }
         }
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_create";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/footer_create";
         const data={
             name,
             link,
@@ -107,7 +107,7 @@ export default function CreateFooter() {
 
     function handleEdit() {
         setCircularResponse(true);
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_update";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/footer_update";
         const data={
             name,
             link,
@@ -143,7 +143,7 @@ export default function CreateFooter() {
     }
 
     function viewProject() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_view";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/footer_view";
         axios.get(url).then((res) => {
             setViewData(res.data.data);
         }).catch((error) => {
@@ -153,7 +153,7 @@ export default function CreateFooter() {
 
     function handleDelete(id) {
         console.log(id);
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/footer_delete";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/footer_delete";
         axios.delete(url, { data: { footer_id: id } }).then((res) => {
             if (res.data.message === "Successfully Deleted!") {
                 viewProject()
@@ -169,7 +169,7 @@ export default function CreateFooter() {
 
 
     function handleStatusTrue(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_footer";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_footer";
         const data = {
             Fid:id,
             Fvisible:true
@@ -191,7 +191,7 @@ export default function CreateFooter() {
         })
     }
     function handleStatusFalse(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_footer";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_footer";
         const data = {
             Fid:id,
             Fvisible:false

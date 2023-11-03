@@ -8,7 +8,7 @@ export default function CourseReportToFaculty() {
 
 
   function handlePDFView(data) {
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/report/view/${data}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/report/view/${data}`;
     axios.get(url, { responseType: "blob" }).then((res) => {
       const objectUrl = URL.createObjectURL(res.data);
       const newWindow = window.open();
@@ -26,7 +26,7 @@ export default function CourseReportToFaculty() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/view_by_faculty/${user.faculty}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/view_by_faculty/${user.faculty}`;
     axios.get(url).then((res) => {
       setData(res.data.newReports);
     }).catch((error) => {

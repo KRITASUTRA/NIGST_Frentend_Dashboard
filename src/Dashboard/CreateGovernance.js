@@ -31,7 +31,7 @@ const CreateGovernance = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_governance";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_governance";
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', description);
@@ -72,7 +72,7 @@ const CreateGovernance = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_governance";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_governance";
         const formData = new FormData();
         formData.append('id', campusId  );
         formData.append('name', name);
@@ -102,7 +102,7 @@ const CreateGovernance = () => {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_governance";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_governance";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -117,7 +117,7 @@ const CreateGovernance = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
         const data={
             id:`${id}`,
             visibility: true,
@@ -133,7 +133,7 @@ const CreateGovernance = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_governance";
         const data={
             id:`${id}`,
             visibility: false,
@@ -150,7 +150,7 @@ const CreateGovernance = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_governance";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_governance";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

@@ -12,7 +12,7 @@ useEffect(()=>{
 },[])
 
     function viewEnquiryFun(){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/contact/contact_view";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/contact/contact_view";
         axios.get(url).then((res)=>{
             console.log(res.data);
             setViewEnquiry(res.data.details);

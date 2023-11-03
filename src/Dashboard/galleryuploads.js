@@ -33,7 +33,7 @@ const ImageUploadForm = () => {
 
   const handleDelete = async (image) => {
     try {
-      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/gallery/delete_album', {
+      const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/gallery/delete_album', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const ImageUploadForm = () => {
       formData.append('Cname', selectedAlbum.category_name);
   
       try {
-        const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_album', {
+        const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_album', {
           method: 'POST',
           body: formData,
         });
@@ -91,7 +91,7 @@ const ImageUploadForm = () => {
     };
 
     try {
-      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_album_category', {
+      const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_album_category', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ const ImageUploadForm = () => {
 
     if (newCategory.trim() !== '') {
       try {
-        const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_album_category', {
+        const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_album_category', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ const ImageUploadForm = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_album_category');
+      const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_album_category');
       const data = await response.json();
       
       if (data && data.data && Array.isArray(data.data)) {
@@ -157,7 +157,7 @@ const ImageUploadForm = () => {
 
   const handleCategoryDelete = async (categoryName) => {
     try {
-      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_album_category', {
+      const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_album_category', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -180,7 +180,7 @@ const ImageUploadForm = () => {
     const requestBody = { category: category };
 
     try {
-      const response = await fetch('http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/gallery/album_view_category', {
+      const response = await fetch('http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/gallery/album_view_category', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ export default function ForgotPassword() {
     }
     function handleForgotPassword(){
         if(input.email !== ""){
-            const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/forget";
+            const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/forget";
             const data = {
                 email:`${input.email}`
             }

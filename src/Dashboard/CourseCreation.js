@@ -97,7 +97,7 @@ export default function CourseCreation() {
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("user"));
     setUserData(data)
-    const urlFaculty = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/faculty_member_faculty/${data.faculty}`;
+    const urlFaculty = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/faculty_member_faculty/${data.faculty}`;
     axios.get(urlFaculty).then((res) => {
       setFaculty(res.data.data)
     }).catch((error) => {
@@ -109,7 +109,7 @@ export default function CourseCreation() {
 
   function getCourse() {
     let data = JSON.parse(localStorage.getItem("user"));
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/course_faculty/${data.faculty}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/course_faculty/${data.faculty}`;
     axios.get(url).then((res) => {
       setViewData(res.data.course);
     }).catch((error) => {
@@ -124,7 +124,7 @@ export default function CourseCreation() {
     if (category && input.title && code && number && faculty && courseMode && input.des) {
       buttonRef.current.disabled = true;
       setCircularResponse(true);
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/course/creation";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/course/creation";
       const cName = input.title.split(" ");
       const temp = cName.map(words => words.charAt(0).toUpperCase() + words.slice(1));
       input.title = temp.join(" ");

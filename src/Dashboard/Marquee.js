@@ -34,7 +34,7 @@ export default function Marquee() {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_marquee";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_marquee";
         const data = {
             detail: `${details}`,
             url: `${url}`,
@@ -72,7 +72,7 @@ export default function Marquee() {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/edit_marquee";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/edit_marquee";
         const data = {
             detail: `${details}`,
             url: `${url}`,
@@ -102,7 +102,7 @@ export default function Marquee() {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_marquee";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_marquee";
         axios.delete(url,{data:{mid:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -117,7 +117,7 @@ export default function Marquee() {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
         const data={
             mid:`${id}`,
             homeVisibility:"true",
@@ -134,7 +134,7 @@ export default function Marquee() {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
         const data={
             mid:`${id}`,
             homeVisibility:"false",
@@ -151,7 +151,7 @@ export default function Marquee() {
         })
     }
     function handleStatusTrueOther(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
         const data={
             mid:`${id}`,
             otherVisibility:"true",
@@ -168,7 +168,7 @@ export default function Marquee() {
         })
     }
     function handleStatusFalseOther(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/edit_mvisiblity";
         const data={
             mid:`${id}`,
             otherVisibility:"false",
@@ -185,7 +185,7 @@ export default function Marquee() {
         })
     }
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_amarquee";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_amarquee";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

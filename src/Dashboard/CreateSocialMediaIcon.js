@@ -38,7 +38,7 @@ const CreateSocialMediaIcon = ()=>{
             }, 5000);
             return;
         }
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/social_media_create";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/social_media_create";
         const data = {
             url:`${link}`,
             name:`${icon}`,
@@ -73,7 +73,7 @@ const CreateSocialMediaIcon = ()=>{
     
     
       function viewProject(){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_social_media";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_social_media";
         axios.get(url).then((res)=>{
             setViewData(res.data.data);
         }).catch((error)=>{
@@ -82,7 +82,7 @@ const CreateSocialMediaIcon = ()=>{
       } 
  
       function handleEdit(){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_social_media";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_social_media";
         const data = {
           url:`${link}`,
           name:`${icon}`,
@@ -107,7 +107,7 @@ const CreateSocialMediaIcon = ()=>{
       }
     
       function handleDelete(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_social_media";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_social_media";
         axios.delete(url,{data:{Sid:id}}).then((res)=>{
           if(res.data.message === "Successfully Deleted!"){
             viewProject()
@@ -122,7 +122,7 @@ const CreateSocialMediaIcon = ()=>{
       }
 
       function handleStatusTrue(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_media";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_media";
         const data = {
           SID:id,
           Svisible:true
@@ -144,7 +144,7 @@ const CreateSocialMediaIcon = ()=>{
         })
       }
       function handleStatusFalse(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visible_media";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visible_media";
         const data = {
           SID:id,
           Svisible:false

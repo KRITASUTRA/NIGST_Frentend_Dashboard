@@ -16,7 +16,7 @@ export default function CreateBanner() {
     function handleSubmit(e){
         e.preventDefault();
         setCircularResponse(true);
-        const url1 = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_banner";
+        const url1 = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_banner";
         const formData = new FormData();
         formData.append("url",url);
         formData.append("alt",alt);
@@ -37,7 +37,7 @@ export default function CreateBanner() {
         })
     }
     function viewDataFun(){
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_banner";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_banner";
       axios.get(url).then((res)=>{
         setViewData(res.data.banners);
       }).catch((error)=>{

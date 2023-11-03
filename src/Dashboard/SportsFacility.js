@@ -29,7 +29,7 @@ const SportsFacility = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_sports_facility";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_sports_facility";
         const formData = new FormData();
         formData.append('description', text);
         formData.append('image', image);
@@ -65,7 +65,7 @@ const SportsFacility = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_sports_facility";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_sports_facility";
         const formData = new FormData();
         formData.append('description', text);
         formData.append('image', image);
@@ -91,7 +91,7 @@ const SportsFacility = () => {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_sports_facility";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_sports_facility";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -106,7 +106,7 @@ const SportsFacility = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_facility";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_facility";
         const data={
             id:`${id}`,
             visibility: true,
@@ -122,7 +122,7 @@ const SportsFacility = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_facility";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_facility";
         const data={
             id:`${id}`,
             visibility: false,
@@ -139,7 +139,7 @@ const SportsFacility = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_sports_facility";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_sports_facility";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

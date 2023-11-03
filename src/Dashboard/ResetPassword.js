@@ -38,7 +38,7 @@ export default function ResetPassword() {
       return;
     }
     const user = JSON.parse(localStorage.getItem("user"));
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/change";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/change";
     const data = {
       facultyId:`${user.id}`,
       oldPassword:`${input.password}`,

@@ -29,7 +29,7 @@ const NigstHostel = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_nigst_hostel";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_nigst_hostel";
         const formData = new FormData();
         formData.append('description', text);
         formData.append('image', image);
@@ -64,7 +64,7 @@ const NigstHostel = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_nigst_hostel";
         const formData = new FormData();
         formData.append('id', campusId  );
         formData.append('description', text);
@@ -91,7 +91,7 @@ const NigstHostel = () => {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_nigst_hostel";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_nigst_hostel";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -106,7 +106,7 @@ const NigstHostel = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
         const data={
             id:`${id}`,
             visibility: true,
@@ -122,7 +122,7 @@ const NigstHostel = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_hostel";
         const data={
             id:`${id}`,
             visibility: false,
@@ -139,7 +139,7 @@ const NigstHostel = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_nigst_hostel";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_nigst_hostel";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

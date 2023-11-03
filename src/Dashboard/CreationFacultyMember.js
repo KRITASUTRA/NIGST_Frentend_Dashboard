@@ -51,7 +51,7 @@ export default function CreationFacultyMember() {
 
   function facultyViewFun() {
     let user = JSON.parse(localStorage.getItem("user"));
-    const urlView = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/faculty_member_faculty/${user.faculty}`
+    const urlView = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/faculty_member_faculty/${user.faculty}`
     axios.get(urlView).then((res) => {
       setFacultyView(res.data.data.reverse());
     }).catch((error) => {
@@ -74,7 +74,7 @@ export default function CreationFacultyMember() {
    else if(input.f_name !== "" && dobRef.current !== null && input.phone!== "" && input.email !== "" && gender !== null && input.education !== "" && input.designation !== "") {
       setCircularResponse(true);
       buttonRef.current.disabled = true;
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/create";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/create";
       const data = {
         first_name: `${input.f_name.charAt(0).toUpperCase() + input.f_name.slice(1)}`,
         middle_name: `${input.m_name.charAt(0).toUpperCase() + input.m_name.slice(1)}`,
@@ -125,7 +125,7 @@ export default function CreationFacultyMember() {
 
   function setFalseLoginAccess(e) {
 
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/access";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/access";
     const data = {
       email: `${userEmail}`,
       access: "false"
@@ -140,7 +140,7 @@ export default function CreationFacultyMember() {
 
   function setTrueLoginAccess(e) {
     console.log("true")
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/access";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/access";
     const data = {
       email: `${userEmail}`,
       access: "true"

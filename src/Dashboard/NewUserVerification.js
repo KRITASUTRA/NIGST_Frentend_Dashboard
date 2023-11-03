@@ -30,7 +30,7 @@ export default function NewUserVerification() {
   };
 
   function filter() {
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/filter?status=${verificationFilterValue}&email=${inputs.email}&organization=${inputs.orgName}&startDate=${startDateRef.current.value}&endDate=${endDateRef.current.value}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/filter?status=${verificationFilterValue}&email=${inputs.email}&organization=${inputs.orgName}&startDate=${startDateRef.current.value}&endDate=${endDateRef.current.value}`;
     axios
       .get(url)
       .then((res) => {
@@ -49,7 +49,7 @@ export default function NewUserVerification() {
 
   function handleAdminVer() {
     setOpen(false);
-    const url = 'http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/secure/verify';
+    const url = 'http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/secure/verify';
     const data = {
       email: userEmail,
     };

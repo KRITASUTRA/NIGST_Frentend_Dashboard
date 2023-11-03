@@ -51,7 +51,7 @@ export default function AnnouncementCreation() {
 
     function createAnnouncement(e) {
         e.preventDefault();
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/announcement/create";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/announcement/create";
         const formData = new FormData();
         formData.append("title",input.title);
         formData.append("description",input.des);
@@ -80,7 +80,7 @@ export default function AnnouncementCreation() {
     }
 
     function viewAnnouncement() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/announcement/view";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/announcement/view";
         axios.get(url).then((res) => {
             setViewAnn(res.data.data);
         }).catch((error) => {
@@ -91,7 +91,7 @@ export default function AnnouncementCreation() {
     }
 
     function changeAnnouncementStatus(id){
-        const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/announcement/edit`;
+        const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/announcement/edit`;
         const data = {
             id:`${id}`
         }
@@ -103,7 +103,7 @@ export default function AnnouncementCreation() {
     }
 
     function archiveAnnouncement(id){
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/archive_ann";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/archive_ann";
         const data={
             aid:`${id}`
         }
@@ -116,7 +116,7 @@ export default function AnnouncementCreation() {
     }
 
 function viewArchiveAnnouncement(){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/show_archive_admin";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/show_archive_admin";
     axios.get(url).then((res)=>{
         setViewArchiveAnnouncementUI(res.data);
         viewAnnouncement();
@@ -128,7 +128,7 @@ function viewArchiveAnnouncement(){
 }
 
 function viewAnnouncementPDF(data){
-  const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_ann/${data}`;
+  const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_ann/${data}`;
   axios.get(url, { responseType: "blob" }).then((res) => {
     const objectUrl = URL.createObjectURL(res.data);
     const newWindow = window.open();
@@ -143,7 +143,7 @@ function viewAnnouncementPDF(data){
 }
 
 function viewArchiveAnnouncementPDF(data){
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_archive/${data}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_archive/${data}`;
     axios.get(url, { responseType: "blob" }).then((res) => {
       const objectUrl = URL.createObjectURL(res.data);
       const newWindow = window.open();
@@ -158,7 +158,7 @@ function viewArchiveAnnouncementPDF(data){
   }
 
   function handleDelete(id){
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/announcement/delete";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/announcement/delete";
     axios.delete(url,{data:{aid:id}}).then((res)=>{
       if(res.data.message === "Successfully Deleted."){
         viewArchiveAnnouncement()

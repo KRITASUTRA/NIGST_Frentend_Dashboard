@@ -14,7 +14,7 @@ export default function CreationFacultysAdmin() {
       }
       function handleSubmit(e){
         e.preventDefault()
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/faculty_create";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/faculty_create";
         const data = {
             name:`${inputs.faculty}`
         }

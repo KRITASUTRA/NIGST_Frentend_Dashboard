@@ -32,7 +32,7 @@ export default function AssigningPositionToFacultyMember() {
       setCircularResponse(true);
       buttonRef.current.disabled = true;
       let userLocal = JSON.parse(localStorage.getItem("user"));
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/possition_assi";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/possition_assi";
       const data = {
         facultyId: facId,
         faculty_pos: facultyPosition,
@@ -67,14 +67,14 @@ export default function AssigningPositionToFacultyMember() {
 
   useEffect(() => {
     let userLocal = JSON.parse(localStorage.getItem("user"));
-    const urlFaculty = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/faculty_member_faculty/${userLocal.faculty}`;
+    const urlFaculty = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/faculty_member_faculty/${userLocal.faculty}`;
     axios.get(urlFaculty).then((res) => {
       setFaculty(res.data.data);
     }).catch((error) => {
       
     });
 
-    const positionUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/send";
+    const positionUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/send";
     axios.get(positionUrl).then((res) => {
       setPosition(res.data.position);
     }).catch((error) => {
@@ -87,7 +87,7 @@ export default function AssigningPositionToFacultyMember() {
 
   function getAssignedPosition() {
     let userLocal = JSON.parse(localStorage.getItem("user"));
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/sauth/faculty_position/${userLocal.faculty}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/sauth/faculty_position/${userLocal.faculty}`;
     axios.get(url).then((res) => {
       setViewData(res.data.facultyPositions);
     }).catch((error) => {

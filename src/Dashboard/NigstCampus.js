@@ -29,7 +29,7 @@ const NigstCampus = () => {
             }, 5000);
             return;
         }
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/create_campus";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_campus";
         const formData = new FormData();
         formData.append('Cdescription', text);
         formData.append('image', image);
@@ -65,7 +65,7 @@ const NigstCampus = () => {
 
     function handleEdit(){
         setCircularResponse(true)
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_campus";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_campus";
         const formData = new FormData();
         console.log(campusId)
         formData.append("id",campusId)
@@ -92,7 +92,7 @@ const NigstCampus = () => {
     }
 
     function handleDelete(id) {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/delete_campus";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/delete_campus";
         axios.delete(url,{data:{id:id}}).then((res)=>{
             viewMarquee();
             setDeleteAlert(true);
@@ -107,7 +107,7 @@ const NigstCampus = () => {
         })
     }
     function handleStatusTrue(id) {
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_campus";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_campus";
         const data={
             id:`${id}`,
             visibility: true
@@ -123,7 +123,7 @@ const NigstCampus = () => {
         })
     }
     function handleStatusFalse(id){
-        const mUrl = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_campus";
+        const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/update_visibility_campus";
         const data={
             id:`${id}`,
             visibility: false
@@ -140,7 +140,7 @@ const NigstCampus = () => {
     }
    
     function viewMarquee() {
-        const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/viewweb/view_campus";
+        const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_campus";
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {

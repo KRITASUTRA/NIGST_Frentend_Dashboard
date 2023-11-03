@@ -47,7 +47,7 @@ export default function CourseScheduling() {
   useEffect(() => {
     setCurrency(getAllISOCodes());
     let data = JSON.parse(localStorage.getItem("user"));
-    const url = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/course_faculty/${data.faculty}`;
+    const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/course_faculty/${data.faculty}`;
     axios.get(url).then((res) => {
       setViewData(res.data.course)
       viewCourse();
@@ -60,7 +60,7 @@ export default function CourseScheduling() {
 
   function viewCourse(){
     let data = JSON.parse(localStorage.getItem("user"));
-    const viewDataUrl = `http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/course/view_scheduled_by_faculty/${data.faculty}`;
+    const viewDataUrl = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/course/view_scheduled_by_faculty/${data.faculty}`;
     axios.get(viewDataUrl).then((res) => {
       setScheduledCourse(res.data.courses);
     }).catch((error) => {
@@ -83,7 +83,7 @@ export default function CourseScheduling() {
       }
       setCircularResponse(true);
       buttonRef.current.disabled = true;
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/course/scheduler";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/course/scheduler";
       const data = {
         courseName: `${courseName}`,
         fees: `${input.fee}`,
@@ -142,7 +142,7 @@ export default function CourseScheduling() {
     setEditForm(true);
     setFrame(false);
     if(newStatus){
-      const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/admin/updateSchedule";
+      const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/admin/updateSchedule";
       const data = {
         status: editData.course_status,
         batch: editData.batch,

@@ -39,7 +39,7 @@ export default function CreationFacultyAdmin() {
     console.log(
       data
     );
-    const url = "http://ec2-13-233-110-121.ap-south-1.compute.amazonaws.com/dep/d";
+    const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/dep/d";
     axios
       .post(url, data)
       .then((res) => {
