@@ -12,6 +12,7 @@ export default function Login() {
   const [responseCircular, setCircularResponse] = useState(false);
   const [inputs, setInputs] = useState({email:"" , password:""})
   const [loginType , setLoginType] = useState("");
+  const [error,setError] = useState("");
   const [emptyFieldAlert,setEmptyFieldAlert] = useState(false);
   const [errorAlert,setErrorAlert] = useState(false);
   const [wrongAlert,setWrongAlert] = useState(false);
@@ -46,15 +47,30 @@ export default function Login() {
       }
     }).catch((error) => {
       setCircularResponse(false);
-      if(error.response.data.message === "Wrong password."){
+      console.log(error.response.data);
+      if(error?.response?.data?.message === "IP blocked. Try again later."){
+        console.log("IP blocked. Try again later")
+
         setWrongAlert(true);
+        setError(error?.response?.data?.message)
         setTimeout(() => {
           setWrongAlert(false);
+          setError("");
         }, 5000);
         buttonRef.current.disabled = false;
         return;
       }
-      if(error.response.data.message === "User Not Exists."){
+      if(error?.response?.data?.error === "Wrong email/username or password."){
+        setWrongAlert(true);
+        setError(error?.response?.data?.error)
+        setTimeout(() => {
+          setWrongAlert(false);
+          setError("");
+        }, 5000);
+        buttonRef.current.disabled = false;
+        return;
+      }
+      if(error?.response?.data?.message === "User Not Exists."){
         setUserNotAlert(true);
         setTimeout(() => {
           setUserNotAlert(false);
@@ -85,7 +101,17 @@ export default function Login() {
       window.location.hash = "/faculty";
     }).catch((error) => {
       setCircularResponse(false);
-      if(error.response.data.message === "Wrong password."){
+      if(error?.response?.data?.message === "IP blocked. Try again later."){
+        console.log("IP blocked. Try again later")
+        setWrongAlert(true);
+        setError(error?.response?.data?.message)
+        setTimeout(() => {
+          setWrongAlert(false);
+        }, 5000);
+        buttonRef.current.disabled = false;
+        return;
+      }
+      else if(error.response.data.message === "Wrong password."){
         setWrongAlert(true);
         setTimeout(() => {
           setWrongAlert(false);
@@ -93,7 +119,7 @@ export default function Login() {
         buttonRef.current.disabled = false;
         return;
       }
-      if(error.response.data.message === "User Not Exists."){
+      else if(error.response.data.message === "User Not Exists."){
         setUserNotAlert(true);
         setTimeout(() => {
           setUserNotAlert(false);
@@ -150,7 +176,7 @@ export default function Login() {
         ) }
       <h3>Login</h3>
       {emptyFieldAlert && <Alert severity='error' style={{marginBottom:"20px"}}>All fields required</Alert> }
-      {wrongAlert && <Alert severity='error' style={{marginBottom:"20px"}}>Wrong Password</Alert> }
+      {wrongAlert && <Alert severity='error' style={{marginBottom:"20px"}}>{error}</Alert> }
       {userNotAlert && <Alert severity='error' style={{marginBottom:"20px"}}>User Not Exists</Alert> }
       {errorAlert && <Alert severity='error' style={{marginBottom:"20px"}}>Something went wrong</Alert> }
       <Inputs type={"email"} placeholder={"Enter Username"} name={"email"} fun={handleInputs} />

@@ -59,7 +59,8 @@ const ImageUploadForm = () => {
   const handleSubmitImage = async (e) => {
     e.preventDefault();
     if (selectedFile && selectedAlbum) {
-      setLoading(true); 
+      setLoading(true);
+       
       const formData = new FormData();
       formData.append('image', selectedFile);
       formData.append('Cname', selectedAlbum.category_name);

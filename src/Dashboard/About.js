@@ -11,6 +11,7 @@ const About = () => {
     const [successAlert, setSuccessAlert] = useState(false);
     const [deleteError, setDeleteAlert] = useState(false);
     const [updateAlert, setUpdateAlert] = useState(false);
+    const [invalidImageAlert, setOnvalidImageAlert] = useState(false);
     const [viewData, setViewData] = useState([]);
     const [emptyFieldAlert, setEmptyFieldAlert] = useState(false);
     const [image,setImage] = useState("");
@@ -29,8 +30,23 @@ const About = () => {
         const mUrl = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/create_about_section_images";
         const formData = new FormData();
         formData.append('image', image);
+        console.log(image.name);
+        let count = 0;
+        for(let i= 0 ;i<image.name.length;i++) {
+            if(image.name[i] === "."){
+                count++;
+            }
+        }
+        console.log(count);
+        if(count > 1){
+            setCircularResponse(false);
+            setOnvalidImageAlert(true);
+            setTimeout(() => {
+                setOnvalidImageAlert(false);
+            }, 5000);
+            return;
+        }
         axios.post(mUrl, formData).then((res) => {
-            console.log(res.data)
             document.getElementById('form').reset();
             viewMarquee();
             setCircularResponse(false);
@@ -81,7 +97,6 @@ const About = () => {
                 setUpdateAlert(false)
             }, 5000);
         }).catch((error)=>{
-            console.log(error)
         })
     }
     function handleStatusFalse(id){
@@ -97,7 +112,6 @@ const About = () => {
                 setUpdateAlert(false)
             }, 5000);
         }).catch((error)=>{
-            console.log(error)
         })
     }
    
@@ -106,7 +120,6 @@ const About = () => {
         axios.get(url).then((res) => {
             setViewData(res.data.data)
         }).catch((error) => {
-            console.log(error)
         })
     }
 
@@ -154,6 +167,7 @@ const About = () => {
                 {emptyFieldAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>All fields required</Alert>}
                 {successAlert && <Alert severity='success' style={{ marginBottom: "20px" }}>Studies created successfully</Alert>}
                 {errorAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Error creating Studies!</Alert>}
+                {invalidImageAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Image is not valid</Alert>}
                 <form id="form" style={{ display: 'flex', flexDirection: 'column' }}>
                         <input type='file'
                             onChange={(e)=>setImage(e.target.files[0])}

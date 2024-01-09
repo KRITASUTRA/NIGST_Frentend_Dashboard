@@ -14,6 +14,8 @@ export default function AnnouncementCreation() {
     const [viewAnn, setViewAnn] = useState([]);
     const [deleteError,setDeleteAlert] = useState(false);
     const [viewArchiveAnnouncementUI,setViewArchiveAnnouncementUI] = useState([]);
+  const [invalidImageAlert, setOnvalidImageAlert] = useState(false);
+
     const [input, setInput] = useState({
         title: "",
         des: "",
@@ -51,6 +53,21 @@ export default function AnnouncementCreation() {
 
     function createAnnouncement(e) {
         e.preventDefault();
+        let image = pdf.current.files[0];
+        let count = 0;
+        for(let i= 0 ;i<image.name.length;i++) {
+            if(image.name[i] === "."){
+                count++;
+            }
+        }
+        console.log(count);
+        if(count > 1){
+            setOnvalidImageAlert(true);
+            setTimeout(() => {
+                setOnvalidImageAlert(false);
+            }, 5000);
+            return;
+        }
         const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/announcement/create";
         const formData = new FormData();
         formData.append("title",input.title);
@@ -75,7 +92,6 @@ export default function AnnouncementCreation() {
             setTimeout(() => {
                 setFailAlert(false);
             }, 5000);
-            console.log(error)
         })
     }
 
@@ -98,7 +114,6 @@ export default function AnnouncementCreation() {
         axios.patch(url,data).then((res)=>{
             viewAnnouncement();
         }).catch((error)=>{
-            console.log(error)
         })
     }
 
@@ -111,7 +126,6 @@ export default function AnnouncementCreation() {
             viewAnnouncement();
             viewArchiveAnnouncement();
         }).catch((error)=>{
-            console.log(error)
         })
     }
 
@@ -138,7 +152,6 @@ function viewAnnouncementPDF(data){
       newWindow.document.body.innerHTML = "<embed width='100%' height='100%' src='" + objectUrl + "' type='application/pdf'></embed>";
     }
   }).catch((error) => {
-    console.log(error);
   });
 }
 
@@ -153,7 +166,6 @@ function viewArchiveAnnouncementPDF(data){
         newWindow.document.body.innerHTML = "<embed width='100%' height='100%' src='" + objectUrl + "' type='application/pdf'></embed>";
       }
     }).catch((error) => {
-      console.log(error);
     });
   }
 
@@ -168,7 +180,6 @@ function viewArchiveAnnouncementPDF(data){
         }, 5000);
       }
     }).catch((error)=>{
-      console.log(error.response.data.message)
     })
   }
 
@@ -262,6 +273,8 @@ function viewArchiveAnnouncementPDF(data){
                     viewForm  && <div className='course-creation-wrapper'>
                         {successAlert && <Alert severity="success">Announcement Created Successfully</Alert>}
                         {failAlert && <Alert severity="error">Something went wrong</Alert>}
+                        {invalidImageAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Image is not valid</Alert>}
+
                         <h3 style={{ margin: "20px auto" }}>Announcement Creation Form</h3>
                         <form style={{ display: "flex", flexDirection: "column" }}>
                             <input name='title' type='text' placeholder='Title' onChange={(e) => handleInput(e)} value={input.title}></input>

@@ -31,6 +31,7 @@ function Tender() {
   const [viewArchive,setViewArchive] = useState([]);
   const [editButton,setEditButton] = useState(false);
   const [tenderNumberAlreadyExists,setTenderNumberAlreadyExists] = useState(false);
+  const [invalidImageAlert, setOnvalidImageAlert] = useState(false);
   const [input , setInput] = useState({
     title:"",
     ref:"",
@@ -134,6 +135,21 @@ function handleSubmit(e) {
     }, 5000);
     return;
   }
+  let image = file.current.files[0];
+  let count = 0;
+        for(let i= 0 ;i<image.name.length;i++) {
+            if(image.name[i] === "."){
+                count++;
+            }
+        }
+        console.log(count);
+        if(count > 1){
+            setOnvalidImageAlert(true);
+            setTimeout(() => {
+                setOnvalidImageAlert(false);
+            }, 5000);
+            return;
+        }
   if(file.current.files[0] !== undefined && input.title && input.description && input.starDate && input.endDate && input.ref ){
     const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/create";
     const formData = new FormData();
@@ -170,6 +186,21 @@ function handleSubmit(e) {
 function handleCorrigendum(e){
   e.preventDefault()
   const formData = new FormData();
+  let image = corrigendumPdf.current.files[0];
+  let count = 0;
+        for(let i= 0 ;i<image.name.length;i++) {
+            if(image.name[i] === "."){
+                count++;
+            }
+        }
+        console.log(count);
+        if(count > 1){
+            setOnvalidImageAlert(true);
+            setTimeout(() => {
+                setOnvalidImageAlert(false);
+            }, 5000);
+            return;
+        }
   formData.append("corrigendum", input.corrigendum);
   formData.append("tender_number", tenderValue);
   formData.append("pdf", corrigendumPdf.current.files[0]);
@@ -282,6 +313,21 @@ function handleEdit(data){
     }, 5000);
     return;
   }
+  let image = file.current.files[0];
+  let count = 0;
+        for(let i= 0 ;i<image.name.length;i++) {
+            if(image.name[i] === "."){
+                count++;
+            }
+        }
+        console.log(count);
+        if(count > 1){
+            setOnvalidImageAlert(true);
+            setTimeout(() => {
+                setOnvalidImageAlert(false);
+            }, 5000);
+            return;
+        }
     const url = "http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/tender/edit";
     const formData = new FormData();
     formData.append("title", input.title);
@@ -447,6 +493,7 @@ function handleEdit(data){
           {dateCheck ? <Alert severity="error" style={{marginBottom:"10px"}}>Start Date can't be greater</Alert> : ""}
           {enterValidAlert ? <Alert severity="error" style={{marginBottom:"10px"}}>/ is not allowed</Alert> : ""}
           {tenderNumberAlreadyExists && <Alert severity='error' style={{marginBottom:"10px"}}>Tender reference number already exists</Alert>}
+          {invalidImageAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Image is not valid</Alert>}
           <Button className='close-btn' onClick={closeTenderForm}  sx={{bgcolor:"#1b3058",color:"white"}} variant="contained">&times;</Button>
           <form action="/submit-form" method="post" encType="multipart/form-data" id='form'>
             <input type="text" id="title" name="title" required onChange={handleInputs} placeholder="Tender Title" value={input.title}/>
@@ -465,6 +512,8 @@ function handleEdit(data){
           {successAlert ? <Alert severity="success" style={{marginBottom:"10px"}}>Corregendom Create successfully</Alert> : ""}
           {failAlert ? <Alert severity="error" style={{marginBottom:"10px"}}>Something Went Wrong Please try again later</Alert> : ""}
           {emptyFieldAlert ? <Alert severity="error" style={{marginBottom:"10px"}}>All fields required</Alert> : ""}
+          {invalidImageAlert && <Alert severity='error' style={{ marginBottom: "20px" }}>Image is not valid</Alert>}
+          
           <button className="close-btn" onClick={closeTenderForm}  style={{bgcolor:"#1b3058",color:"white",position:"absolute",width:"auto"}} variant="contained">&times;</button>
           <form action="/submit-corrigendum" method="post" encType="multipart/form-data" id='form'>
             <label htmlFor="ref-dropdown">Select Title Ref. No.:</label>
