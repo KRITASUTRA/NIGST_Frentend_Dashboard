@@ -141,6 +141,7 @@ function viewArchiveAnnouncement(){
     })
 }
 
+
 function viewAnnouncementPDF(data){
   const url = `http://ec2-65-1-131-144.ap-south-1.compute.amazonaws.com/viewweb/view_ann/${data}`;
   axios.get(url, { responseType: "blob" }).then((res) => {
